@@ -529,7 +529,7 @@ is the same type as \tcode{std::thread}.
 
 \pnum
 \effects\ Constructs an object of type \tcode{thread}. The new thread of execution executes
-\tcode{\textit{INVOKE}(\textit{DECAY_COPY}(}\
+\tcode{\textit{INVOKE}(\textit{DECAY_COPY}(}
 \tcode{std::forward<F>(f)), \textit{DECAY_COPY}(std::forward<Args>(args))...)} with the calls to
 \brk{}\tcode{\textit{DECAY_COPY}} being evaluated in the constructing thread. Any return value from this invocation
 is ignored. \begin{note} This implies that any exceptions not thrown from the invocation of the copy
