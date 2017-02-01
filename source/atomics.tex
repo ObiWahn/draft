@@ -518,16 +518,18 @@ the read-modify-write operation.
 Implementations should make atomic stores visible to atomic loads within a reasonable
 amount of time.
 
-\indexlibrary{\idxcode{kill_dependency}}%
+\begin{indexed}{\indexlibrary{\idxcode{kill_dependency}}}
 \begin{itemdecl}
 template<class T>
   T kill_dependency(T y) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
-\effects The argument does not carry a dependency to the return
-value\iref{intro.multithread}.
+\effects The argument does not
+\deflinkx{carry a dependency}{carries a dependency}{intro.multithread}
+to the return value.
 
 \pnum
 \returns \tcode{y}.
@@ -571,7 +573,7 @@ lock-free. A value of 1 indicates that the types are sometimes lock-free. A
 value of 2 indicates that the types are always lock-free.
 
 \pnum
-The function \tcode{atomic_is_lock_free}\iref{atomics.types.operations}
+The function \linkx{\tcode{atomic_is_lock_free}}{\idxcode{atomic_is_lock_free}}{atomics.types.operations}
 indicates whether the object is lock-free. In any given program execution, the
 result of the lock-free query shall be consistent for all pointers of the same
 type.

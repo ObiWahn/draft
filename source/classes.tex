@@ -151,7 +151,7 @@ and move assignment operator~(\ref{class.copy.ctor}, \ref{class.copy.assign})
 is either deleted or trivial,
 \item that has at least one non-deleted copy constructor, move constructor,
 copy assignment operator, or move assignment operator, and
-\item that has a trivial, non-deleted destructor\iref{class.dtor}.
+\item that has a trivial, non-deleted \link{destructor}{class.dtor}.
 \end{itemize}
 
 \pnum
@@ -168,10 +168,10 @@ A class \tcode{S} is a \defnadj{standard-layout}{class} if it:
 \item has no non-static data members of type non-standard-layout class
 (or array of such types) or reference,
 
-\item has no virtual functions\iref{class.virtual} and no
-virtual base classes\iref{class.mi},
+\item has no \link{virtual functions}{class.virtual} and no
+\link{virtual base classes}{class.mi},
 
-\item has the same access control\iref{class.access}
+\item has the same \link{access control}{class.access}
 for all non-static data members,
 
 \item has no non-standard-layout base classes,
@@ -192,7 +192,7 @@ that may be at a zero offset in \tcode{X}. \end{note}
 
 \begin{itemize}
 \item If \tcode{X} is a non-union class type with no (possibly
-inherited\iref{class.derived}) non-static data members, the set
+\link{inherited}{class.derived}) non-static data members, the set
 $M(\mathtt{X})$ is empty.
 
 \item If \tcode{X} is a non-union class type with a non-static data
@@ -304,7 +304,7 @@ int f(Y);
 \end{codeblock}
 
 \indextext{overloading}%
-declare an overloaded\iref{over} function \tcode{f()} and not
+declare an \link{overloaded}{over} function \tcode{f()} and not
 simply a single function \tcode{f()} twice. For the same reason,
 
 \begin{codeblock}
@@ -322,7 +322,7 @@ A class declaration introduces the class name into the scope where
 \indextext{name hiding!class definition}%
 it is declared and hides any
 class, variable, function, or other declaration of that name in an
-enclosing scope\iref{basic.scope}. If a class name is declared in a
+enclosing \link{scope}{basic.scope}. If a class name is declared in a
 scope where a variable, function, or enumerator of the same name is also
 declared, then when both declarations are in scope, the class can be
 referred to only using an
@@ -486,9 +486,9 @@ full set of members of the class; no member can be added elsewhere.
 A \defn{direct member} of a class \tcode{X} is a member of \tcode{X}
 that was first declared within the \grammarterm{member-specification} of \tcode{X},
 including anonymous union objects\iref{class.union.anon} and direct members thereof.
-Members of a class are data members, member
-functions\iref{class.mfct}, nested types, enumerators,
-and member templates\iref{temp.mem} and specializations thereof.
+Members of a class are data members, \link{member functions}{class.mfct},
+nested types, enumerators,
+and \link{member templates}{temp.mem} and specializations thereof.
 \begin{note}
 A specialization of a static data member template is a static data member.
 A specialization of a member function template is a member function.
@@ -499,14 +499,14 @@ A specialization of a member class template is a nested class.
 A \grammarterm{member-declaration} does not declare new members of the class
 if it is
 \begin{itemize}
-\item a friend declaration\iref{class.friend},
+\item a \link{friend declaration}{class.friend},
 \item a \grammarterm{static_assert-declaration},
 \item a \grammarterm{using-declaration}\iref{namespace.udecl}, or
 \item an \grammarterm{empty-declaration}.
 \end{itemize}
 For any other \grammarterm{member-declaration},
 each declared entity
-that is not an unnamed bit-field\iref{class.bit}
+that is not an \deflinkx{unnamed bit-field}{bit-field!unnamed}{class.bit}
 is a member of the class,
 and each such \grammarterm{member-declaration}
 shall either
@@ -518,10 +518,10 @@ A \defn{data member} is a non-function member introduced by a
 \grammarterm{member-declarator}.
 A \defn{member function} is a member that is a function.
 Nested types are classes~(\ref{class.name}, \ref{class.nest}) and
-enumerations\iref{dcl.enum} declared in the class and arbitrary types
-declared as members by use of a typedef declaration\iref{dcl.typedef}
+\link{enumerations}{dcl.enum} declared in the class and arbitrary types
+declared as members by use of a \link{typedef declaration}{dcl.typedef}
 or \grammarterm{alias-declaration}.
-The enumerators of an unscoped enumeration\iref{dcl.enum} defined in the class
+The enumerators of an \link{unscoped enumeration}{dcl.enum} defined in the class
 are members of the class.
 
 \indextext{member!static}%
@@ -538,7 +538,7 @@ Any other data member or member function is a \defn{non-static member}
 (a \defn{non-static data member} or
 \defn{non-static member function}~(\ref{class.mfct.non-static}), respectively).
 \begin{note} A non-static data member of non-reference
-type is a member subobject of a class object\iref{intro.object}.\end{note}
+type is a \deflink{member subobject}{intro.object} of a class object.\end{note}
 
 \pnum
 A member shall not be declared twice in the
@@ -559,10 +559,10 @@ are sufficiently different\iref{over}.
 \indextext{completely defined}%
 A \defn{complete-class context} of a class is a
 \begin{itemize}
-\item function body\iref{dcl.fct.def.general},
-\item default argument\iref{dcl.fct.default},
+\item \link{function body}{dcl.fct.def.general},
+\item \link{default argument}{dcl.fct.default},
 \item \grammarterm{noexcept-specifier}\iref{except.spec},
-\item contract condition\iref{dcl.attr.contract}, or
+\item \deflink{contract condition}{dcl.attr.contract}, or
 \item default member initializer
 \end{itemize}
 within the \grammarterm{member-specification} of the class.
@@ -641,9 +641,9 @@ shall contain a \grammarterm{type-specifier} that is not a \grammarterm{cv-quali
 The
 \grammarterm{member-declarator-list} can be omitted only after a
 \grammarterm{class-specifier} or an \grammarterm{enum-specifier} or in a
-friend declaration\iref{class.friend}. A
+\link{friend declaration}{class.friend}. A
 \grammarterm{pure-specifier} shall be used only in the declaration of a
-virtual function\iref{class.virtual}
+\link{virtual function}{class.virtual}
 that is not a friend declaration.
 
 \pnum
@@ -715,17 +715,17 @@ of the \tcode{tword} member of the \tcode{right} subtree of \tcode{s}.
 \pnum
 \indextext{layout!class object}%
 Non-static data members of a (non-union) class
-with the same access control\iref{class.access}
+with the same \link{access control}{class.access}
 are allocated so that later
 members have higher addresses within a class object.
 \indextext{allocation!unspecified}%
 The order of allocation of non-static data members
-with different access control
-is unspecified\iref{class.access}.
+with different \link{access control}{class.access}
+is unspecified.
 Implementation alignment requirements might cause two adjacent members
 not to be allocated immediately after each other; so might requirements
-for space for managing virtual functions\iref{class.virtual} and
-virtual base classes\iref{class.mi}.
+for space for managing \link{virtual functions}{class.virtual} and
+virtual \link{base classes}{class.mi}.
 
 \pnum
 If \tcode{T} is the name of a class, then each of the following shall
@@ -736,8 +736,8 @@ have a name different from \tcode{T}:
 
 \item every member function of class \tcode{T}
 \begin{note}
-This restriction does not apply to constructors, which do not have
-names\iref{class.ctor}
+This restriction does not apply to \link{constructors}{class.ctor},
+which do not have names
 \end{note};
 
 \item every member of class \tcode{T} that is itself a type;
@@ -753,7 +753,7 @@ unscoped enumerated type; and
 
 \pnum
 In addition, if class \tcode{T} has a user-declared
-constructor\iref{class.ctor}, every non-static data member of class
+\link{constructor}{class.ctor}, every non-static data member of class
 \tcode{T} shall have a name different from \tcode{T}.
 
 \pnum
@@ -790,11 +790,11 @@ both classes\iref{basic.types}.
 \pnum
 Two standard-layout unions are layout-compatible if they
 have the same number of non-static data members and corresponding
-non-static data members (in any order) have layout-compatible
-types\iref{basic.types}.
+non-static data members (in any order) have \deflinkx{layout-compatible
+types}{layout-compatible}{basic.types}.
 
 \pnum
-In a standard-layout union with an active member\iref{class.union}
+In a standard-layout union with an \deflinkx{active member}{active!union member}{class.union}
 of struct type \tcode{T1}, it is permitted to read a non-static
 data member \tcode{m} of another union member of struct type \tcode{T2}
 provided \tcode{m} is part of the common initial sequence of \tcode{T1} and \tcode{T2};
@@ -836,9 +836,9 @@ pointer-interconvertible~(\ref{basic.compound}, \ref{expr.static.cast}).
 \pnum
 \indextext{member function!inline}%
 \indextext{definition!member function}%
-A member function may be defined\iref{dcl.fct.def} in its class
-definition, in which case it is an inline member
-function\iref{dcl.inline}, or it may be defined outside of its class
+A member function may be \link{defined}{dcl.fct.def} in its class
+definition, in which case it is an \deflinkx{inline}{inline function}{dcl.inline} member
+function, or it may be defined outside of its class
 definition if it has already been declared but not defined in its class
 definition. A member function definition that appears outside of the
 class definition shall appear in a namespace scope enclosing the class
@@ -855,7 +855,7 @@ declaration in the class definition or its definition outside of the
 class definition declares the function as \tcode{inline} or \tcode{constexpr}.
 \begin{note}
 Member functions of a class in namespace scope have the linkage of that class.
-Member functions of a local class\iref{class.local} have no linkage.
+Member functions of a \link{local class}{class.local} have no linkage.
 See~\ref{basic.link}.
 \end{note}
 
@@ -874,8 +874,8 @@ definition, the member function name shall be qualified by its class
 name using the \tcode{::} operator.
 \begin{note}
 A name used in a member function definition (that is, in the
-\grammarterm{parameter-declaration-clause} including the default
-arguments\iref{dcl.fct.default} or in the member function body) is looked up
+\grammarterm{parameter-declaration-clause} including the \link{default
+arguments}{dcl.fct.default} or in the member function body) is looked up
 as described in~\ref{basic.lookup}.
 \end{note}
 \begin{example}
@@ -940,9 +940,9 @@ Also see~\ref{temp.arg}.
 
 \pnum
 A non-static member function may be called for an object of
-its class type, or for an object of a class derived\iref{class.derived}
-from its class type, using the class member
-access syntax~(\ref{expr.ref}, \ref{over.match.call}). A non-static
+its class type, or for an object of a class \link{derived}{class.derived}
+from its class type, using the
+\link{class member access}{expr.ref} syntax\iref{over.match.call}. A non-static
 member function may also be called directly using the function call
 syntax~(\ref{expr.call}, \ref{over.match.call}) from within
 the body of a member function of its class or of a class derived from
@@ -956,19 +956,18 @@ object that is not of type \tcode{X}, or of a type derived from
 
 \pnum
 When an \grammarterm{id-expression}\iref{expr.prim.id} that is not part of a
-class member access syntax\iref{expr.ref} and not used to form a
+\link{class member access}{expr.ref} syntax and not used to form a
 pointer to member\iref{expr.unary.op} is used in
-a member of class \tcode{X} in a context where \tcode{this} can be
-used\iref{expr.prim.this},
-if name
-lookup\iref{basic.lookup} resolves the name in the
+a member of class \tcode{X} in a context where \link{\tcode{this}}{expr.prim.this} can be
+used,
+if \link{name lookup}{basic.lookup} resolves the name in the
 \grammarterm{id-expression} to a non-static non-type member of some class
 \tcode{C},
 and if either the \grammarterm{id-expression} is potentially evaluated or
 \tcode{C} is \tcode{X} or a base class of \tcode{X},
-the \grammarterm{id-expression} is transformed into a class
-member access expression\iref{expr.ref} using
-\tcode{(*this)}\iref{class.this} as the \grammarterm{postfix-expression}
+the \grammarterm{id-expression} is transformed into a
+\link{class member access}{expr.ref} expression using
+\link{\tcode{(*this)}}{class.this} as the \grammarterm{postfix-expression}
 to the left of the \tcode{.} operator.
 \begin{note}
 If \tcode{C} is not \tcode{X} or a base class of \tcode{X}, the class
@@ -1025,11 +1024,11 @@ declared elsewhere.\footnote{See, for example, \tcode{<cstring>}\iref{c.strings}
 \indextext{member function!const volatile}%
 A non-static member function may be declared \tcode{const},
 \tcode{volatile}, or \tcode{const} \tcode{volatile}. These
-\grammarterm{cv-qualifier}{s} affect the type of the \tcode{this}
-pointer\iref{class.this}. They also affect the function
-type\iref{dcl.fct} of the member function; a member function declared
-\tcode{const} is a \defn{const member function}, a member function
-declared \tcode{volatile} is a \defn{volatile member function} and a
+\grammarterm{cv-qualifier}{s} affect the type of the \link{\tcode{this}
+pointer}{class.this}. They also affect the \link{function
+type}{dcl.fct} of the member function; a member function declared
+\tcode{const} is a \term{const} member function, a member function
+declared \tcode{volatile} is a \term{volatile} member function and a
 member function declared \tcode{const} \tcode{volatile} is a
 \defn{const volatile member function}.
 \begin{example}
@@ -1093,13 +1092,13 @@ called. This is not allowed in a const member function because
 \end{example}
 
 \pnum
-Similarly, \tcode{volatile} semantics\iref{dcl.type.cv} apply in
+Similarly, \link{\tcode{volatile}}{dcl.type.cv} semantics apply in
 volatile member functions when accessing the object and its
 non-static data members.
 
 \pnum
 A cv-qualified member function can be called on an
-object-expression\iref{expr.ref} only if the object-expression is as
+\link{object-expression}{expr.ref} only if the object-expression is as
 cv-qualified or less-cv-qualified than the member function.
 \begin{example}
 

@@ -5571,7 +5571,7 @@ and prints the partial sums onto
 \indexlibrary{\idxcode{istream_iterator}}%
 The class template
 \tcode{istream_iterator}
-is an input iterator\iref{input.iterators} that
+is an \link{input iterator}{input.iterators} that
 reads (using
 \tcode{operator>>})
 successive elements from the input stream for which it was constructed.
@@ -5922,10 +5922,11 @@ The iterator is destroyed.
 
 \rSec3[ostream.iterator.ops]{Operations}
 
-\indexlibrarymember{operator=}{ostream_iterator}%
+\begin{indexed}{\indexlibrarymember{operator=}{ostream_iterator}}
 \begin{itemdecl}
 ostream_iterator& operator=(const T& value);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -5968,7 +5969,7 @@ ostream_iterator& operator++(int);
 The
 class template
 \tcode{istreambuf_iterator}
-defines an input iterator\iref{input.iterators} that
+defines an \link{input iterator}{input.iterators} that
 reads successive
 \textit{characters}
 from the streambuf for which it was constructed.
@@ -6083,11 +6084,12 @@ an end-of-stream iterator is constructed if and only if
 the exposition-only member \tcode{sbuf_} is initialized with a null pointer value.
 
 
-\indexlibrary{\idxcode{istreambuf_iterator}!constructor}%
+\begin{indexed}{\indexlibrary{\idxcode{istreambuf_iterator}!constructor}}
 \begin{itemdecl}
 constexpr istreambuf_iterator() noexcept;
 constexpr istreambuf_iterator(default_sentinel_t) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -6095,11 +6097,11 @@ constexpr istreambuf_iterator(default_sentinel_t) noexcept;
 Initializes \tcode{sbuf_} with \tcode{nullptr}.
 \end{itemdescr}
 
-
-\indexlibrary{\idxcode{istreambuf_iterator}!constructor}%
+\begin{indexed}{\indexlibrary{\idxcode{istreambuf_iterator}!constructor}}
 \begin{itemdecl}
 istreambuf_iterator(istream_type& s) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -6107,11 +6109,11 @@ istreambuf_iterator(istream_type& s) noexcept;
 Initializes \tcode{sbuf_} with \tcode{s.rdbuf()}.
 \end{itemdescr}
 
-
-\indexlibrary{\idxcode{istreambuf_iterator}!constructor}%
+\begin{indexed}{\indexlibrary{\idxcode{istreambuf_iterator}!constructor}}
 \begin{itemdecl}
 istreambuf_iterator(streambuf_type* s) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -6119,11 +6121,11 @@ istreambuf_iterator(streambuf_type* s) noexcept;
 Initializes \tcode{sbuf_} with \tcode{s}.
 \end{itemdescr}
 
-
-\indexlibrary{\idxcode{istreambuf_iterator}!constructor}%
+\begin{indexed}{\indexlibrary{\idxcode{istreambuf_iterator}!constructor}}
 \begin{itemdecl}
 istreambuf_iterator(const @\placeholder{proxy}@& p) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -6268,10 +6270,11 @@ namespace std {
 
 \rSec3[ostreambuf.iter.cons]{Constructors}
 
-\indexlibrary{\idxcode{ostreambuf_iterator}!constructor}%
+\begin{indexed}{\indexlibrary{\idxcode{ostreambuf_iterator}!constructor}}
 \begin{itemdecl}
 ostreambuf_iterator(ostream_type& s) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -6284,11 +6287,11 @@ shall not be a null pointer.
 Initializes \tcode{sbuf_} with \tcode{s.rdbuf()}.
 \end{itemdescr}
 
-
-\indexlibrary{\idxcode{ostreambuf_iterator}!constructor}%
+\begin{indexed}{\indexlibrary{\idxcode{ostreambuf_iterator}!constructor}}
 \begin{itemdecl}
 ostreambuf_iterator(streambuf_type* s) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -6536,10 +6539,11 @@ template<class T, size_t N> [[nodiscard]] constexpr bool empty(const T (&array)[
 \pnum \returns \tcode{false}.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{empty(initializer_list<E>)}}%
+\begin{indexed}{\indexlibrary{\idxcode{empty(initializer_list<E>)}}}
 \begin{itemdecl}
 template<class E> [[nodiscard]] constexpr bool empty(initializer_list<E> il) noexcept;
 \end{itemdecl}
+\end{indexed}
 \begin{itemdescr}
 \pnum \returns \tcode{il.size() == 0}.
 \end{itemdescr}

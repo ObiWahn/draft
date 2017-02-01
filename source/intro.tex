@@ -134,7 +134,7 @@ comma-separated list bounded by the parentheses\iref{cpp.replace}
 \indexdefn{argument}%
 \indexdefn{argument!throw expression}%
 \definition{argument}{defns.argument.throw}
-\defncontext{throw expression} operand of \tcode{throw}\iref{expr.throw}
+\defncontext{throw expression} operand of \link{\tcode{throw}}{expr.throw}
 
 \indexdefn{argument}%
 \indexdefn{argument!template instantiation}%
@@ -171,10 +171,11 @@ implementation's output messages
 glvalue refers
 
 \begin{example}
-If a pointer\iref{dcl.ptr} \tcode{p} whose static type is ``pointer to
-class \tcode{B}'' is pointing to an object of class \tcode{D}, derived
-from \tcode{B}\iref{class.derived}, the dynamic type of the
-expression \tcode{*p} is ``\tcode{D}''. References\iref{dcl.ref} are
+If a \link{pointer}{dcl.ptr} \tcode{p} whose static type is ``pointer to
+class \tcode{B}'' is pointing to an object of class \tcode{D},
+\link{derived}{class.derived}
+from \tcode{B}, the dynamic type of the
+expression \tcode{*p} is ``\tcode{D}''. \link{References}{dcl.ref} are
 treated similarly.
 \end{example}
 
@@ -184,7 +185,7 @@ treated similarly.
 
 \indexdefn{program!ill-formed}%
 \definition{ill-formed program}{defns.ill.formed}
-program that is not well-formed\iref{defns.well.formed}
+program that is not \link{well-formed}{defns.well.formed}
 
 \indexdefn{behavior!implementation-defined}%
 \definition{implementation-defined behavior}{defns.impl.defined}
@@ -338,7 +339,7 @@ possible behaviors is usually delineated by this document.
 \indexdefn{program!well-formed}%
 \definition{well-formed program}{defns.well.formed}
 \Cpp{}  program constructed according to the syntax rules, diagnosable
-semantic rules, and the one-definition rule\iref{basic.def.odr}%
+semantic rules, and the \link{one-definition rule}{basic.def.odr}%
 \indextext{definitions|)}
 
 \rSec0[intro]{General principles}
@@ -414,7 +415,7 @@ see~\ref{temp.deduct}.
 \indextext{conformance requirements!classes}%
 \indextext{conformance requirements!class templates}%
 For classes and class templates, the library Clauses specify partial
-definitions. Private members\iref{class.access} are not
+definitions. \link{Private members}{class.access} are not
 specified, but each implementation shall supply them to complete the
 definitions according to the description in the library Clauses.
 
@@ -425,13 +426,13 @@ consistent with the descriptions in the library Clauses.
 
 \pnum
 The names defined in the library have namespace
-scope\iref{basic.namespace}. A \Cpp{}  translation
-unit\iref{lex.phases} obtains access to these names by including the
-appropriate standard library header\iref{cpp.include}.
+scope\iref{basic.namespace}. A \Cpp{}  \link{translation
+unit}{lex.phases} obtains access to these names by \link{including}{cpp.include} the
+appropriate standard library header.
 
 \pnum
 The templates, classes, functions, and objects in the library have
-external linkage\iref{basic.link}. The implementation provides
+external \link{linkage}{basic.link}. The implementation provides
 definitions for standard library entities, as necessary, while combining
 translation units to form a complete \Cpp{}  program\iref{lex.phases}.%
 \indextext{conformance requirements!library|)}

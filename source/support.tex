@@ -47,21 +47,14 @@ as summarized in \tref{lang.sup.lib.summary}.
 
 \rSec2[cstddef.syn]{Header \tcode{<cstddef>} synopsis}
 
-\indexlibrary{\idxcode{NULL}}%
-\indexlibrary{\idxcode{offsetof}}%
-\indexlibrary{\idxcode{ptrdiff_t}}%
-\indexlibrary{\idxcode{size_t}}%
-\indexlibrary{\idxcode{max_align_t}}%
-\indexlibrary{\idxcode{nullptr_t}}%
-\indexlibrary{\idxcode{byte}}%
 \begin{codeblock}
 namespace std {
-  using ptrdiff_t = @\seebelow@;
-  using size_t = @\seebelow@;
-  using max_align_t = @\seebelow@;
-  using nullptr_t = decltype(nullptr);
+  using @\libentity{ptrdiff_t}@ = @\seebelow@;
+  using @\libentity{size_t}@ = @\seebelow@;
+  using @\libentity{max_align_t}@ = @\seebelow@;
+  using @\libentity{nullptr_t}@ = decltype(nullptr);
 
-  enum class byte : unsigned char {};
+  enum class @\libentity{byte}@ : unsigned char {};
 
   // \ref{support.types.byteops}, \tcode{byte} type operations
   template<class IntType>
@@ -83,8 +76,8 @@ namespace std {
     constexpr IntType to_integer(byte b) noexcept;
 }
 
-#define NULL @\seebelow@
-#define offsetof(P, D) @\seebelow@
+#define @\libentity{NULL}@ @\seebelow@
+#define @\libentity{offsetof}@(P, D) @\seebelow@
 \end{codeblock}
 
 \pnum
@@ -123,7 +116,6 @@ and as noted in
 \indexlibrary{\idxcode{div_t}}%
 \indexlibrary{\idxcode{exit}}%
 \indexlibrary{\idxcode{free}}%
-\indexlibrary{\idxcode{getenv}}%
 \indexlibrary{\idxcode{labs}}%
 \indexlibrary{\idxcode{ldiv}}%
 \indexlibrary{\idxcode{ldiv_t}}%
@@ -181,7 +173,7 @@ namespace std {
   [[noreturn]] void _Exit(int status) noexcept;
   [[noreturn]] void quick_exit(int status) noexcept;
 
-  char* getenv(const char* name);
+  char* @\libentity{getenv}@(const char* name);
   int system(const char* string);
 
   // \ref{c.malloc}, C library memory allocation
@@ -256,7 +248,7 @@ and except as noted in
 \ref{c.math.abs}.
 \begin{note}
 Several functions have additional overloads in this document,
-but they have the same behavior as in the C standard library\iref{library.c}.
+but they have the same behavior as in the \link{C standard library}{library.c}.
 \end{note}
 
 \xrefc{7.22}
@@ -264,8 +256,7 @@ but they have the same behavior as in the C standard library\iref{library.c}.
 \rSec2[support.types.nullptr]{Null pointers}
 
 \pnum
-\indexlibrary{\idxcode{nullptr_t}}%
-The type \tcode{nullptr_t} is a synonym
+The type \libentity{nullptr_t} is a synonym
 for the type of a \tcode{nullptr} expression, and it
 has the characteristics
 described in~\ref{basic.fundamental} and~\ref{conv.ptr}.
@@ -275,9 +266,7 @@ Although \tcode{nullptr}'s address cannot be taken, the address of another
 \end{note}
 
 \pnum
-The macro
-\indexlibrary{\idxcode{NULL}}%
-\tcode{NULL}
+The macro \libentity{NULL}
 is an \impldef{definition of \tcode{NULL}} null pointer constant.%
 \footnote{Possible definitions include
 \tcode{0}
@@ -292,8 +281,7 @@ but not
 
 \pnum
 The macro
-\indexlibrary{\idxcode{offsetof}}%
-\tcode{offsetof(\placeholder{type}, \placeholder{member-designator})}
+\libentity{offsetof}\tcode{(\placeholder{type}, \placeholder{member-designator})}
 has the same semantics as the corresponding macro in
 the C standard library header \tcode{<stddef.h>}, but
 accepts a restricted set of \tcode{\placeholder{type}}
@@ -305,8 +293,8 @@ is required to work as specified even if unary
 \tcode{operator\&}
 is overloaded for any of the types involved.}
 The expression \tcode{offsetof(\placeholder{type}, \placeholder{member-designator})}
-is never type-dependent\iref{temp.dep.expr} and it is
-value-dependent\iref{temp.dep.constexpr} if and only if \tcode{\placeholder{type}} is
+is never \link{type-dependent}{temp.dep.expr} and it is
+\link{value-dependent}{temp.dep.constexpr} if and only if \tcode{\placeholder{type}} is
 dependent. The result of applying the \tcode{offsetof} macro to
 a static data member or a function member is undefined.
 No operation invoked by the \tcode{offsetof} macro shall throw an exception and
@@ -327,7 +315,7 @@ to contain the size in bytes of any object\iref{expr.sizeof}.
 \pnum
 \begin{note}
 It is recommended that implementations choose types for \tcode{ptrdiff_t} and \tcode{size_t}
-whose integer conversion ranks\iref{conv.rank} are no greater than that of
+whose integer \link{conversion ranks}{conv.rank} are no greater than that of
 \tcode{signed long int} unless a larger size is necessary to contain all the possible values.
 \end{note}
 
@@ -502,9 +490,9 @@ template<class IntType>
 
 \pnum
 The headers
-\tcode{<limits>}\iref{limits.syn},
-\tcode{<climits>}\iref{climits.syn}, and
-\tcode{<cfloat>}\iref{cfloat.syn}
+\link{\tcode{<limits>}}{limits.syn},
+\link{\tcode{<climits>}}{climits.syn}, and
+\link{\tcode{<cfloat>}}{cfloat.syn}
 supply characteristics of
 \indextext{implementation-dependent}%
 imple\-mentation-dependent
@@ -776,24 +764,19 @@ values:
 
 \begin{itemize}
 \item
-\indexlibrary{\idxcode{round_indeterminate}}%
-\tcode{round_indeterminate}
+\libentity{round_indeterminate}
 if the rounding style is indeterminable
 \item
-\indexlibrary{\idxcode{round_toward_zero}}%
-\tcode{round_toward_zero}
+\libentity{round_toward_zero}
 if the rounding style is toward zero
 \item
-\indexlibrary{\idxcode{round_to_nearest}}%
-\tcode{round_to_nearest}
+\libentity{round_to_nearest}
 if the rounding style is to the nearest representable value
 \item
-\indexlibrary{\idxcode{round_toward_infinity}}%
-\tcode{round_toward_infinity}
+\libentity{round_toward_infinity}
 if the rounding style is toward infinity
 \item
-\indexlibrary{\idxcode{round_toward_neg_infinity}}%
-\tcode{round_toward_neg_infinity}
+\libentity{round_toward_neg_infinity}
 if the rounding style is toward negative infinity
 \end{itemize}
 
@@ -929,13 +912,13 @@ the specialization on the unqualified type \tcode{T}.
 
 \pnum
 Non-arithmetic standard types, such as
-\tcode{complex<T>}\iref{complex}, shall not have specializations.
+\link{\tcode{complex<T>}}{complex}, shall not have specializations.
 
 \rSec3[numeric.limits.members]{\tcode{numeric_limits} members}
 
 \pnum
 \indextext{signal-safe!\idxcode{numeric_limits} members}%
-Each member function defined in this subclause is signal-safe\iref{support.signal}.
+Each member function defined in this subclause is \deflinkx{signal-safe}{evaluation!signal-safe}{support.signal}.
 
 \indexlibrarymember{min}{numeric_limits}%
 \begin{itemdecl}
@@ -959,10 +942,11 @@ or
 \tcode{is_bounded == false \&\& is_signed == false}.
 \end{itemdescr}
 
-\indexlibrarymember{max}{numeric_limits}%
+\begin{indexed}{\indexlibrarymember{max}{numeric_limits}}
 \begin{itemdecl}
 static constexpr T max() noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -1812,7 +1796,7 @@ the C standard library header \tcode{<stdint.h>}.
 \pnum
 \indexhdr{cstdlib}%
 \begin{note}
-The header \tcode{<cstdlib>}\iref{cstdlib.syn}
+The header \link{\tcode{<cstdlib>}}{cstdlib.syn}
 declares the functions described in this subclause.
 \end{note}
 
@@ -1832,7 +1816,7 @@ The program is terminated without executing destructors for objects of automatic
 thread, or static storage duration and without calling functions passed to
 \tcode{atexit()}\iref{basic.start.term}.
 \indextext{signal-safe!\idxcode{_Exit}}%
-The function \tcode{_Exit} is signal-safe\iref{support.signal}.
+The function \tcode{_Exit} is \deflinkx{signal-safe}{evaluation!signal-safe}{support.signal}.
 \end{itemdescr}
 
 \indexlibrary{\idxcode{abort}}%
@@ -1852,7 +1836,7 @@ automatic, thread, or static storage
 duration and without calling functions passed to
 \tcode{atexit()}\iref{basic.start.term}.
 \indextext{signal-safe!\idxcode{abort}}%
-The function \tcode{abort} is signal-safe\iref{support.signal}.
+The function \tcode{abort} is \deflinkx{signal-safe}{evaluation!signal-safe}{support.signal}.
 \end{itemdescr}
 
 \indexlibrary{\idxcode{atexit}}%
@@ -1869,7 +1853,8 @@ The
 functions register the function pointed to by \tcode{f}
 to be called without arguments at normal program termination.
 It is unspecified whether a call to \tcode{atexit()} that does not
-happen before\iref{intro.multithread} a call to \tcode{exit()} will succeed.
+\deflinkx{happen before}{happens before}{intro.multithread}
+a call to \tcode{exit()} will succeed.
 \begin{note} The \tcode{atexit()} functions do not introduce a data
 race\iref{res.on.data.races}. \end{note}
 
@@ -1885,10 +1870,11 @@ function returns zero if the registration succeeds,
 nonzero if it fails.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{exit}}%
+\begin{indexed}{\indexlibrary{\idxcode{exit}}}
 \begin{itemdecl}
 [[noreturn]] void exit(int status);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -1903,7 +1889,7 @@ are called.\footnote{A function is called for every time it is registered.}
 See~\ref{basic.start.term} for the order of destructions and calls.
 (Automatic objects are not destroyed as a result of calling
 \tcode{exit()}.)\footnote{Objects with automatic storage duration are all destroyed in a program whose
-\tcode{main} function\iref{basic.start.main}
+\link{\tcode{main} function}{basic.start.main}
 contains no automatic objects and executes the call to
 \tcode{exit()}.
 Control can be transferred directly to such a
@@ -1957,7 +1943,8 @@ int at_quick_exit(@\placeholder{atexit-handler}@* f) noexcept;
 \effects The \tcode{at_quick_exit()} functions register the function pointed to by \tcode{f}
 to be called without arguments when \tcode{quick_exit} is called.
 It is unspecified whether a call to \tcode{at_quick_exit()} that does not
-happen before\iref{intro.multithread} all calls to \tcode{quick_exit} will succeed. \begin{note} The
+\deflinkx{happen before}{happens before}{intro.multithread}
+all calls to \tcode{quick_exit} will succeed. \begin{note} The
 \tcode{at_quick_exit()} functions do not introduce a
 data race\iref{res.on.data.races}. \end{note}
 \begin{note}
@@ -2003,7 +1990,7 @@ After calling registered functions, \tcode{quick_exit} shall call \tcode{_Exit(s
 \pnum
 \remarks
 \indextext{signal-safe!\idxcode{quick_exit}}%
-The function \tcode{quick_exit} is signal-safe\iref{support.signal}
+The function \tcode{quick_exit} is \deflinkx{signal-safe}{evaluation!signal-safe}{support.signal}
 when the functions registered with \tcode{at_quick_exit} are.
 \end{itemdescr}
 
@@ -2113,7 +2100,7 @@ and thereby displace the default versions defined by the
 \pnum
 \effects
 The
-allocation functions\iref{basic.stc.dynamic.allocation}
+\link{allocation functions}{basic.stc.dynamic.allocation}
 called by a
 \grammarterm{new-expression}\iref{expr.new}
 to allocate
@@ -2158,7 +2145,7 @@ a null pointer value, throws
 \tcode{bad_alloc}.
 \item
 Otherwise, the function calls the current
-\tcode{new_handler} function\iref{new.handler}.
+\link{\tcode{new_handler}}{new.handler} function.
 If the called function returns, the loop repeats.
 \item
 The loop terminates when an attempt to allocate the requested storage is
@@ -2230,7 +2217,7 @@ void operator delete(void* ptr, std::size_t size, std::align_val_t alignment) no
 \pnum
 \effects
 The
-deallocation functions\iref{basic.stc.dynamic.deallocation}
+\link{deallocation functions}{basic.stc.dynamic.deallocation}
 called by a
 \grammarterm{delete-expression}\iref{expr.delete}
 to render the value of \tcode{ptr} invalid.
@@ -2263,7 +2250,7 @@ which has not been invalidated by an intervening call to
 
 \pnum
 \requires
-If an implementation has strict pointer safety\iref{basic.stc.dynamic.safety}
+If an implementation has \deflink{strict pointer safety}{basic.stc.dynamic.safety}
 then \tcode{ptr} shall be a safely-derived pointer.
 
 \pnum
@@ -2329,7 +2316,7 @@ void operator delete(void* ptr, std::align_val_t alignment, const std::nothrow_t
 \pnum
 \effects
 The
-deallocation functions\iref{basic.stc.dynamic.deallocation}
+\link{deallocation functions}{basic.stc.dynamic.deallocation}
 called by the implementation
 to render the value of \tcode{ptr} invalid
 when the constructor invoked from a nothrow
@@ -2353,7 +2340,7 @@ which has not been invalidated by an intervening call to
 
 \pnum
 \requires
-If an implementation has strict pointer safety\iref{basic.stc.dynamic.safety}
+If an implementation has \deflink{strict pointer safety}{basic.stc.dynamic.safety}
 then \tcode{ptr} shall be a safely-derived pointer.
 
 \pnum
@@ -2384,7 +2371,7 @@ respectively.
 \pnum
 \effects
 The
-allocation functions\iref{basic.stc.dynamic.allocation}
+\link{allocation functions}{basic.stc.dynamic.allocation}
 called by the array form of a
 \grammarterm{new-expression}\iref{expr.new}
 to allocate
@@ -2485,7 +2472,7 @@ void operator delete[](void* ptr, std::size_t size, std::align_val_t alignment) 
 \pnum
 \effects
 The
-deallocation functions\iref{basic.stc.dynamic.deallocation}
+\link{deallocation functions}{basic.stc.dynamic.deallocation}
 called by the array form of a
 \grammarterm{delete-expression}
 to render the value of \tcode{ptr} invalid.
@@ -2518,7 +2505,7 @@ which has not been invalidated by an intervening call to
 
 \pnum
 \requires
-If an implementation has strict pointer safety\iref{basic.stc.dynamic.safety}
+If an implementation has \deflink{strict pointer safety}{basic.stc.dynamic.safety}
 then \tcode{ptr} shall be a safely-derived pointer.
 
 \pnum
@@ -2565,7 +2552,7 @@ void operator delete[](void* ptr, std::align_val_t alignment, const std::nothrow
 \pnum
 \effects
 The
-deallocation functions\iref{basic.stc.dynamic.deallocation}
+\link{deallocation functions}{basic.stc.dynamic.deallocation}
 called by the implementation
 to render the value of \tcode{ptr} invalid
 when the constructor invoked from a nothrow
@@ -2589,7 +2576,7 @@ which has not been invalidated by an intervening call to
 
 \pnum
 \requires
-If an implementation has strict pointer safety\iref{basic.stc.dynamic.safety}
+If an implementation has \deflink{strict pointer safety}{basic.stc.dynamic.safety}
 then \tcode{ptr} shall be a safely-derived pointer.
 
 \pnum
@@ -2668,7 +2655,7 @@ Intentionally performs no action.
 
 \pnum
 \requires
-If an implementation has strict pointer safety\iref{basic.stc.dynamic.safety}
+If an implementation has \deflink{strict pointer safety}{basic.stc.dynamic.safety}
 then \tcode{ptr} shall be a safely-derived pointer.
 
 \pnum
@@ -2691,7 +2678,7 @@ Intentionally performs no action.
 
 \pnum
 \requires
-If an implementation has strict pointer safety\iref{basic.stc.dynamic.safety}
+If an implementation has \deflink{strict pointer safety}{basic.stc.dynamic.safety}
 then \tcode{ptr} shall be a safely-derived pointer.
 
 \pnum
@@ -2716,8 +2703,8 @@ versions of \tcode{operator delete}, the C standard library function
 introduce a data race\iref{res.on.data.races}.
 Calls to these functions that allocate or deallocate a particular unit
 of storage shall occur in a single total order, and each such deallocation call
-shall happen before\iref{intro.multithread} the next allocation (if any) in
-this order.
+shall \deflinkx{happen before}{happens before}{intro.multithread}
+the next allocation (if any) in this order.
 
 \rSec2[alloc.errors]{Storage allocation errors}
 
@@ -2780,7 +2767,8 @@ An \impldef{return value of \tcode{bad_alloc::what}} \ntbs{}.
 
 \pnum
 \remarks
-The message may be a null-terminated multibyte string\iref{multibyte.strings},
+The message may be a
+\deflinkx{null-terminated multibyte string}{string!null-terminated multibyte}{multibyte.strings},
 suitable for conversion and display as a
 \tcode{wstring}~(\ref{string.classes}, \ref{locale.codecvt}).
 \end{itemdescr}
@@ -2826,17 +2814,19 @@ An \impldef{return value of \tcode{bad_array_new_length::what}} \ntbs{}.
 
 \pnum
 \remarks
-The message may be a null-terminated multibyte string\iref{multibyte.strings},
+The message may be a
+\deflinkx{null-terminated multibyte string}{string!null-terminated multibyte}{multibyte.strings},
 suitable for conversion and display as a
 \tcode{wstring}~(\ref{string.classes}, \ref{locale.codecvt}).
 \end{itemdescr}
 
 \rSec3[new.handler]{Type \tcode{new_handler}}
 
-\indexlibrary{\idxcode{new_handler}}%
+\begin{indexed}{\indexlibrary{\idxcode{new_handler}}}
 \begin{itemdecl}
 using new_handler = void (*)();
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -2913,8 +2903,8 @@ template<class T> [[nodiscard]] constexpr T* launder(T* p) noexcept;
 \pnum
 \requires
 \tcode{p} represents the address \placeholder{A} of a byte in memory.
-An object \placeholder{X} that is within its lifetime\iref{basic.life}
-and whose type is similar\iref{conv.qual} to \tcode{T}
+An object \placeholder{X} that is within its \deflink{lifetime}{basic.life}
+and whose type is \deflinkx{similar}{similar types}{conv.qual} to \tcode{T}
 is located at the address \placeholder{A}.
 All bytes of storage that would be reachable through the result
 are reachable through \tcode{p} (see below).
@@ -3141,7 +3131,8 @@ An \impldef{return value of \tcode{type_info::name()}} \ntbs{}.
 
 \pnum
 \remarks
-The message may be a null-terminated multibyte string\iref{multibyte.strings},
+The message may be a
+\deflinkx{null-terminated multibyte string}{string!null-terminated multibyte}{multibyte.strings},
 suitable for conversion and display as a
 \tcode{wstring}~(\ref{string.classes}, \ref{locale.codecvt})
 \end{itemdescr}
@@ -3208,7 +3199,8 @@ An \impldef{return value of \tcode{bad_cast::what}} \ntbs{}.
 
 \pnum
 \remarks
-The message may be a null-terminated multibyte string\iref{multibyte.strings},
+The message may be a
+\deflinkx{null-terminated multibyte string}{string!null-terminated multibyte}{multibyte.strings},
 suitable for conversion and display as a
 \tcode{wstring}~(\ref{string.classes}, \ref{locale.codecvt})
 \end{itemdescr}
@@ -3275,7 +3267,8 @@ An \impldef{return value of \tcode{bad_typeid::what}} \ntbs{}.
 
 \pnum
 \remarks
-The message may be a null-terminated multibyte string\iref{multibyte.strings},
+The message may be a
+\deflinkx{null-terminated multibyte string}{string!null-terminated multibyte}{multibyte.strings},
 suitable for conversion and display as a
 \tcode{wstring}~(\ref{string.classes}, \ref{locale.codecvt})
 \end{itemdescr}
@@ -3494,7 +3487,8 @@ An \impldef{return value of \tcode{exception::what}} \ntbs{}.
 
 \pnum
 \remarks
-The message may be a null-terminated multibyte string\iref{multibyte.strings},
+The message may be a
+\deflinkx{null-terminated multibyte string}{string!null-terminated multibyte}{multibyte.strings},
 suitable for conversion and display as a
 \tcode{wstring}~(\ref{string.classes}, \ref{locale.codecvt}).
 The return value remains valid until the exception object from which
@@ -3563,7 +3557,8 @@ An \impldef{return value of \tcode{bad_exception::what}} \ntbs{}.
 
 \pnum
 \remarks
-The message may be a null-terminated multibyte string\iref{multibyte.strings},
+The message may be a
+\deflinkx{null-terminated multibyte string}{string!null-terminated multibyte}{multibyte.strings},
 suitable for conversion and display as a
 \tcode{wstring}~(\ref{string.classes}, \ref{locale.codecvt}).
 \end{itemdescr}
@@ -3667,21 +3662,22 @@ int uncaught_exceptions() noexcept;
 \begin{itemdescr}
 \pnum
 \returns
-The number of uncaught exceptions\iref{except.uncaught}.
+The number of \link{uncaught exceptions}{except.uncaught}.
 
 \pnum
 \remarks
 When \tcode{uncaught_exceptions() > 0},
 throwing an exception can result in a call of the function
-\tcode{std::terminate}\iref{except.terminate}.
+\link{\tcode{std::terminate}}{except.terminate}.
 \end{itemdescr}
 
 \rSec2[propagation]{Exception propagation}
 
-\indexlibrary{\idxcode{exception_ptr}}%
+\begin{indexed}{\indexlibrary{\idxcode{exception_ptr}}}
 \begin{itemdecl}
 using exception_ptr = @\unspec@;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -3726,8 +3722,9 @@ exception_ptr current_exception() noexcept;
 
 \begin{itemdescr}
 \pnum
-\returns An \tcode{exception_ptr} object that refers to
-the currently handled exception\iref{except.handle} or a copy of the currently
+\returns An \tcode{exception_ptr} object that refers to the
+\deflinkx{currently handled exception}{exception handling!currently handled exception}{except.handle}
+or a copy of the currently
 handled exception, or a null \tcode{exception_ptr} object if no exception is being
 handled. The referenced object shall remain valid at least as long as there is an
 \tcode{exception_ptr} object that refers to it.
@@ -3889,7 +3886,7 @@ if (auto p = dynamic_cast<const nested_exception*>(addressof(e)))
 The header \tcode{<initializer_list>} defines a class template and several
 support functions related to list-initialization~(see \ref{dcl.init.list}).
 \indextext{signal-safe!\idxcode{initializer_list} functions}%
-All functions specified in this subclause are signal-safe\iref{support.signal}.
+All functions specified in this subclause are \deflinkx{signal-safe}{evaluation!signal-safe}{support.signal}.
 
 \rSec2[initializer_list.syn]{Header \tcode{<initializer_list>} synopsis}
 \indexlibrary{\idxcode{initializer_list}}%
@@ -4014,7 +4011,7 @@ template<class E> constexpr const E* end(initializer_list<E> il) noexcept;
 \pnum
 The header \tcode{<compare>} specifies types, objects, and functions
 for use primarily in connection with
-the three-way comparison operator\iref{expr.spaceship}.
+the \link{three-way comparison operator}{expr.spaceship}.
 
 \indexhdr{compare}%
 \indexlibrary{\idxcode{is_eq}}%
@@ -4112,7 +4109,7 @@ that is accessible via the argument's public const members.
 
 \pnum
 The \tcode{weak_equality} type is typically used
-as the result type of a three-way comparison operator\iref{expr.spaceship}
+as the result type of a \link{three-way comparison operator}{expr.spaceship}
 that (a) admits only equality and inequality comparisons,
 and (b) does not imply substitutability.
 
@@ -4187,7 +4184,7 @@ constexpr weak_equality operator<=>(@\unspec@, weak_equality v) noexcept;
 
 \pnum
 The \tcode{strong_equality} type is typically used
-as the result type of a three-way comparison operator\iref{expr.spaceship}
+as the result type of a \link{three-way comparison operator}{expr.spaceship}
 that (a) admits only equality and inequality comparisons,
 and (b) does imply substitutability.
 
@@ -4282,7 +4279,7 @@ constexpr strong_equality operator<=>(@\unspec@, strong_equality v) noexcept;
 
 \pnum
 The \tcode{partial_ordering} type is typically used
-as the result type of a three-way comparison operator\iref{expr.spaceship}
+as the result type of a \link{three-way comparison operator}{expr.spaceship}
 that (a) admits all of the six two-way comparison operators (\ref{expr.rel}, \ref{expr.eq}),
 (b) does not imply substitutability,
 and (c) permits two values to be incomparable.%
@@ -4432,7 +4429,7 @@ constexpr partial_ordering operator<=>(@\unspec@, partial_ordering v) noexcept;
 
 \pnum
 The \tcode{weak_ordering} type is typically used
-as the result type of a three-way comparison operator\iref{expr.spaceship}
+as the result type of a \link{three-way comparison operator}{expr.spaceship}
 that (a) admits all of the six two-way comparison operators (\ref{expr.rel}, \ref{expr.eq}),
 and (b) does not imply substitutability.
 
@@ -4577,7 +4574,7 @@ constexpr weak_ordering operator<=>(@\unspec@, weak_ordering v) noexcept;
 
 \pnum
 The \tcode{strong_ordering} type is typically used
-as the result type of a three-way comparison operator\iref{expr.spaceship}
+as the result type of a \link{three-way comparison operator}{expr.spaceship}
 that (a) admits all of the six two-way comparison operators (\ref{expr.rel}, \ref{expr.eq}),
 and (b) does imply substitutability.
 
@@ -4981,7 +4978,7 @@ provide further compatibility with C code.
 \pnum
 Calls to the function
 \indexlibrary{\idxcode{getenv}}%
-\tcode{getenv}\iref{cstdlib.syn} shall not introduce a data
+\liblinkx{\tcode{getenv}}{getenv}{cstdlib.syn} shall not introduce a data
 race\iref{res.on.data.races} provided that nothing modifies the environment.
 \begin{note} Calls to the POSIX functions
 \indexlibrary{\idxcode{setenv}}%
@@ -4991,7 +4988,7 @@ race\iref{res.on.data.races} provided that nothing modifies the environment.
 environment. \end{note}
 
 \pnum
-A call to the \tcode{setlocale} function\iref{c.locales}
+A call to the \liblinkx{\tcode{setlocale}}{setlocale}{c.locales} function
 may introduce a data race with other
 calls to the \tcode{setlocale} function or with calls to functions that are
 affected by the current C locale. The implementation shall behave as if no
@@ -5008,13 +5005,13 @@ function.
 \indexlibrary{\idxcode{va_arg}}%
 \begin{codeblock}
 namespace std {
-  using va_list = @\seebelow@;
+  using @\libentity{va_list}@ = @\seebelow@;
 }
 
-#define va_arg(V, P) @\seebelow@
-#define va_copy(VDST, VSRC) @\seebelow@
-#define va_end(V) @\seebelow@
-#define va_start(V, P) @\seebelow@
+#define @\libentity{va_arg}@(V, P) @\seebelow@
+#define @\libentity{va_copy}@(VDST, VSRC) @\seebelow@
+#define @\libentity{va_end}@(V) @\seebelow@
+#define @\libentity{va_start}@(V, P) @\seebelow@
 \end{codeblock}
 
 \pnum

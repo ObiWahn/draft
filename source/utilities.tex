@@ -76,24 +76,20 @@ namespace std {
   // \ref{declval}, declval
   template<class T>
     add_rvalue_reference_t<T> declval() noexcept;  // as unevaluated operand
-@%
-\indexlibrary{\idxcode{index_sequence}}%
-\indexlibrary{\idxcode{make_index_sequence}}%
-\indexlibrary{\idxcode{index_sequence_for}}%
-@
+
   // \ref{intseq}, Compile-time integer sequences
   template<class T, T...>
     struct integer_sequence;
   template<size_t... I>
-    using index_sequence = integer_sequence<size_t, I...>;
+    using @\libentity{index_sequence}@ = integer_sequence<size_t, I...>;
 
   template<class T, T N>
     using make_integer_sequence = integer_sequence<T, @\seebelow{}@>;
   template<size_t N>
-    using make_index_sequence = make_integer_sequence<size_t, N>;
+    using @\libentity{make_index_sequence}@ = make_integer_sequence<size_t, N>;
 
   template<class... T>
-    using index_sequence_for = make_index_sequence<sizeof...(T)>;
+    using @\libentity{index_sequence_for}@ = make_index_sequence<sizeof...(T)>;
 
   // \ref{pairs}, class template \tcode{pair}
   template<class T1, class T2>
@@ -156,7 +152,7 @@ namespace std {
     explicit piecewise_construct_t() = default;
   };
   inline constexpr piecewise_construct_t piecewise_construct{};
-  template<class... Types> class tuple;        // defined in \tcode{<tuple>}\iref{tuple.syn}
+  template<class... Types> class tuple;        // defined in \link{\tcode{<tuple>}}{tuple.syn}
 
   // in-place construction
   struct in_place_t {
@@ -225,7 +221,7 @@ unless \tcode{is_swappable_v<T>} is \tcode{true}.
 
 \pnum
 \requires
-\tcode{a[i]} shall be swappable with\iref{swappable.requirements} \tcode{b[i]}
+\tcode{a[i]} shall be \deflink{swappable with}{swappable.requirements} \tcode{b[i]}
 for all \tcode{i} in the range \range{0}{N}.
 
 \pnum
@@ -261,7 +257,7 @@ of forwarding functions.
 \indextext{signal-safe!\idxcode{forward}}%
 \indextext{signal-safe!\idxcode{move}}%
 \indextext{signal-safe!\idxcode{move_if_noexcept}}%
-All functions specified in this subclause are signal-safe\iref{support.signal}.
+All functions specified in this subclause are \deflinkx{signal-safe}{evaluation!signal-safe}{support.signal}.
 
 \indexlibrary{\idxcode{forward}}%
 \indextext{\idxcode{forward}}%
@@ -377,7 +373,7 @@ template<class T> constexpr add_const_t<T>& as_const(T& t) noexcept;
 
 \pnum
 The library provides the function template \tcode{declval} to simplify the definition of
-expressions which occur as unevaluated operands\iref{expr.prop}.
+expressions which occur as \deflinkx{unevaluated operands}{unevaluated operand}{expr.prop}.
 
 \indexlibrary{\idxcode{declval}}%
 \begin{itemdecl}
@@ -386,7 +382,7 @@ template<class T> add_rvalue_reference_t<T> declval() noexcept;    // as unevalu
 
 \begin{itemdescr}
 \pnum
-\remarks If this function is odr-used\iref{basic.def.odr}, the program is ill-formed.
+\remarks If this function is \link{odr-used}{basic.def.odr}, the program is ill-formed.
 
 \pnum
 \remarks The template parameter \tcode{T} of \tcode{declval} may be an incomplete type.
@@ -969,7 +965,7 @@ inline constexpr piecewise_construct_t piecewise_construct{};
 The \tcode{struct} \tcode{piecewise_construct_t} is an empty class type
 used as a unique type to disambiguate constructor and function overloading. Specifically,
 \tcode{pair} has a constructor with \tcode{piecewise_construct_t} as the
-first argument, immediately followed by two \tcode{tuple}\iref{tuple} arguments used
+first argument, immediately followed by two \link{\tcode{tuple}}{tuple} arguments used
 for piecewise construction of the elements of the \tcode{pair} object.
 
 \rSec1[tuple]{Tuples}
@@ -1427,7 +1423,7 @@ template<class Alloc, class U1, class U2>
 
 \pnum
 \effects Equivalent to the preceding constructors except that each element is constructed with
-uses-allocator construction\iref{allocator.uses.construction}.
+\deflink{uses-allocator construction}{allocator.uses.construction}.
 \end{itemdescr}
 
 \rSec3[tuple.assign]{Assignment}
@@ -2308,7 +2304,8 @@ constexpr optional(nullopt_t) noexcept;
 \pnum
 \remarks
 No contained value is initialized.
-For every object type \tcode{T} these constructors shall be constexpr constructors\iref{dcl.constexpr}.
+For every object type \tcode{T} these constructors shall be
+\deflinkx{constexpr constructors}{specifier!constexpr!constructor}{dcl.constexpr}.
 \end{itemdescr}
 
 \indexlibrary{\idxcode{optional}!constructor}%
@@ -4926,12 +4923,13 @@ For $n > 1$, the invocation of the callable object has
 no complexity requirements.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{monostate}}%
 \rSec2[variant.monostate]{Class \tcode{monostate}}
 
+\begin{indexed}{\indexlibrary{\idxcode{monostate}}}
 \begin{itemdecl}
 struct monostate{};
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -5099,7 +5097,8 @@ public:
 \end{codeblock}
 
 \pnum
-Objects of type \tcode{bad_any_cast} are thrown by a failed \tcode{any_cast}\iref{any.nonmembers}.
+Objects of type \tcode{bad_any_cast} are thrown by a failed
+\linkx{\tcode{any_cast}}{\idxcode{any_cast}}{any.nonmembers}.
 
 \indexlibrarymember{what}{bad_any_cast}%
 \begin{itemdecl}
@@ -5576,7 +5575,7 @@ template<class T, class U, class... Args>
 Equivalent to: \tcode{return any(in_place_type<T>, il, std::forward<Args>(args)...);}
 \end{itemdescr}
 
-\indexlibrary{\idxcode{any_cast}}%
+\begin{indexed}{\indexlibrary{\idxcode{any_cast}}}
 \begin{itemdecl}
 template<class T>
   T any_cast(const any& operand);
@@ -5585,6 +5584,7 @@ template<class T>
 template<class T>
   T any_cast(any&& operand);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -5636,13 +5636,14 @@ any_cast<string&>(y);                       // error; cannot
 \end{example}
 \end{itemdescr}
 
-\indexlibrary{\idxcode{any_cast}}%
+\begin{indexed}{\indexlibrary{\idxcode{any_cast}}}
 \begin{itemdecl}
 template<class T>
   const T* any_cast(const any* operand) noexcept;
 template<class T>
   T* any_cast(any* operand) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -5670,7 +5671,7 @@ bool is_string(const any& operand) {
 
 \begin{codeblock}
 #include <string>
-#include <iosfwd>   // for \tcode{istream}\iref{istream.syn}, \tcode{ostream}\iref{ostream.syn}, see \ref{iosfwd.syn}
+#include <iosfwd>   // for \link{\tcode{istream}}{istream.syn}, \link{\tcode{ostream}}{ostream.syn}, see \ref{iosfwd.syn}
 
 namespace std {
   template<size_t N> class bitset;
@@ -5814,19 +5815,19 @@ errors, each associated with a distinct exception:
 an
 \term{invalid-argument}
 error is associated with exceptions of type
-\tcode{invalid_argument}\iref{invalid.argument};
+\link{\tcode{invalid_argument}}{invalid.argument};
 \indexlibrary{\idxcode{invalid_argument}}%
 \item
 an
 \term{out-of-range}
 error is associated with exceptions of type
-\tcode{out_of_range}\iref{out.of.range};
+\link{\tcode{out_of_range}}{out.of.range};
 \indexlibrary{\idxcode{out_of_range}}%
 \item
 an
 \term{overflow}
 error is associated with exceptions of type
-\tcode{overflow_error}\iref{overflow.error}.
+\link{\tcode{overflow_error}}{overflow.error}.
 \indexlibrary{\idxcode{overflow_error}}%
 \end{itemize}
 
@@ -5857,8 +5858,8 @@ Constructs an object of class
 \tcode{bitset<N>},
 initializing the first \tcode{M} bit positions to the corresponding bit
 values in \tcode{val}.
-\tcode{M} is the smaller of \tcode{N} and the number of bits in the value
-representation\iref{basic.types} of \tcode{unsigned long long}.
+\tcode{M} is the smaller of \tcode{N} and the number of bits in the
+\deflink{value representation}{basic.types} of \tcode{unsigned long long}.
 If \tcode{M < N}, the remaining bit positions are initialized to zero.
 \end{itemdescr}
 
@@ -5959,10 +5960,11 @@ for which the corresponding bit in \tcode{rhs} is clear, and leaves all other bi
 \tcode{*this}.
 \end{itemdescr}
 
-\indexlibrarymember{operator"|=}{bitset}%
+\begin{indexed}{\indexlibrarymember{operator"|=}{bitset}}
 \begin{itemdecl}
 bitset<N>& operator|=(const bitset<N>& rhs) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -6246,10 +6248,11 @@ bit value one becomes the character
 The created object.
 \end{itemdescr}
 
-\indexlibrarymember{count}{bitset}%
+\begin{indexed}{\indexlibrarymember{count}{bitset}}
 \begin{itemdecl}
 size_t count() const noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -6315,10 +6318,11 @@ in
 has the value one.
 \end{itemdescr}
 
-\indexlibrarymember{all}{bitset}%
+\begin{indexed}{\indexlibrarymember{all}{bitset}}
 \begin{itemdecl}
 bool all() const noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -6412,8 +6416,8 @@ is equivalent to
 \throws Nothing.
 
 \pnum
-\remarks For the purpose of determining the presence of a data
-race\iref{intro.multithread}, any access or update through the resulting
+\remarks For the purpose of determining the presence of a
+\deflink{data race}{intro.multithread}, any access or update through the resulting
 reference potentially accesses or modifies, respectively, the entire
 underlying bitset.
 \end{itemdescr}
@@ -6474,7 +6478,7 @@ template<class charT, class traits, size_t N>
 
 \begin{itemdescr}
 \pnum
-A formatted input function\iref{istream.formatted}.
+A \link{formatted input function}{istream.formatted}.
 
 \pnum
 \effects
@@ -6534,8 +6538,8 @@ os << x.template to_string<charT, traits, allocator<charT>>(
 
 \pnum
 This subclause describes the contents of the header
-\tcode{<memory>}\iref{memory.syn} and some
-of the contents of the header \tcode{<cstdlib>}\iref{cstdlib.syn}.
+\link{\tcode{<memory>}}{memory.syn} and some
+of the contents of the header \link{\tcode{<cstdlib>}}{cstdlib.syn}.
 
 \rSec2[memory.syn]{Header \tcode{<memory>} synopsis}
 
@@ -7175,8 +7179,8 @@ void declare_reachable(void* p);
 
 \begin{itemdescr}
 \pnum
-\requires \tcode{p} shall be a safely-derived
-pointer\iref{basic.stc.dynamic.safety} or a null pointer value.
+\requires \tcode{p} shall be a \deflink{safely-derived pointer}{basic.stc.dynamic.safety}
+or a null pointer value.
 
 \pnum
 \effects If \tcode{p} is not null, the complete object referenced by \tcode{p}
@@ -7268,8 +7272,8 @@ pointer_safety get_pointer_safety() noexcept;
 
 \begin{itemdescr}
 \pnum
-\returns \tcode{pointer_safety::strict} if the implementation has strict pointer
-safety\iref{basic.stc.dynamic.safety}. It is
+\returns \tcode{pointer_safety::strict} if the implementation has
+\deflink{strict pointer safety}{basic.stc.dynamic.safety}. It is
 \impldef{whether \tcode{get_pointer_safety} returns
 \tcode{pointer_safety::relaxed} or
 \tcode{pointer_safety::\brk{}preferred} if the implementation has relaxed pointer safety}
@@ -7705,10 +7709,11 @@ the \grammarterm{qualified-id} \tcode{Alloc::pointer} is valid and denotes a
 type\iref{temp.deduct}; otherwise, \tcode{value_type*}.
 \end{itemdescr}
 
-\indexlibrarymember{const_pointer}{allocator_traits}%
+\begin{indexed}{\indexlibrarymember{const_pointer}{allocator_traits}}
 \begin{itemdecl}
 using const_pointer = @\seebelow@;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -7718,10 +7723,11 @@ type\iref{temp.deduct}; otherwise,
 \tcode{pointer_traits<pointer>::rebind<\brk{}const value_type>}.
 \end{itemdescr}
 
-\indexlibrarymember{void_pointer}{allocator_traits}%
+\begin{indexed}{\indexlibrarymember{void_pointer}{allocator_traits}}
 \begin{itemdecl}
 using void_pointer = @\seebelow@;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -7872,11 +7878,12 @@ static void deallocate(Alloc& a, pointer p, size_type n);
 \throws Nothing.
 \end{itemdescr}
 
-\indexlibrarymember{construct}{allocator_traits}%
+\begin{indexed}{\indexlibrarymember{construct}{allocator_traits}}
 \begin{itemdecl}
 template<class T, class... Args>
   static void construct(Alloc& a, T* p, Args&&... args);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -7885,11 +7892,12 @@ if that call is well-formed;
 otherwise, invokes \tcode{::new (static_cast<void*>(p)) T(std::forward<Args>(args)...)}.
 \end{itemdescr}
 
-\indexlibrarymember{destroy}{allocator_traits}%
+\begin{indexed}{\indexlibrarymember{destroy}{allocator_traits}}
 \begin{itemdecl}
 template<class T>
   static void destroy(Alloc& a, T* p);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -7925,13 +7933,15 @@ well-formed; otherwise, \tcode{rhs}.
 All specializations of the default allocator satisfy the
 allocator completeness requirements\iref{allocator.requirements.completeness}.
 
-\indexlibrary{\idxcode{allocator}}%
 \indexlibrarymember{value_type}{allocator}%
 \indexlibrarymember{size_type}{allocator}%
 \indexlibrarymember{difference_type}{allocator}%
 \indexlibrarymember{propagate_on_container_move_assignment}{allocator}%
 \indexlibrarymember{is_always_equal}{allocator}%
+\begin{indexed}{
 \indexlibrarymember{operator=}{allocator}%
+\indexlibrary{\idxcode{allocator}}
+}
 \begin{codeblock}
 namespace std {
   template<class T> class allocator {
@@ -7953,12 +7963,13 @@ namespace std {
   };
 }
 \end{codeblock}
+\end{indexed}
 
 \rSec3[allocator.members]{Members}
 
 \pnum
 Except for the destructor, member functions of the default allocator shall not introduce
-data races\iref{intro.multithread} as a result of concurrent calls to those member
+\deflinkx{data races}{data race}{intro.multithread} as a result of concurrent calls to those member
 functions from different threads. Calls to these functions that allocate or deallocate a
 particular unit of storage shall occur in a single total order, and each such
 deallocation call shall happen before the next allocation (if any) in this order.
@@ -7976,7 +7987,7 @@ A pointer to the initial element of an array of storage of size \tcode{n}
 
 \pnum
 \remarks
-the storage is obtained by calling \tcode{::operator new}\iref{new.delete},
+the storage is obtained by calling \link{\tcode{::operator new}}{new.delete},
 but it is unspecified when or how often this
 function is called.
 
@@ -8004,7 +8015,7 @@ Deallocates the storage referenced by \tcode{p} .
 \pnum
 \remarks
 Uses
-\tcode{::operator delete}\iref{new.delete},
+\link{\tcode{::operator delete}}{new.delete},
 but it is unspecified
 when this function is called.
 \end{itemdescr}
@@ -8209,7 +8220,7 @@ presence of an overloaded \tcode{operator\&}.
 
 \pnum
 \remarks An expression \tcode{addressof(E)}
-is a constant subexpression\iref{defns.const.subexpr}
+is a \link{constant subexpression}{defns.const.subexpr}
 if \tcode{E} is an lvalue constant subexpression.
 \end{itemdescr}
 
@@ -8331,11 +8342,12 @@ return first;
 \end{codeblock}
 \end{itemdescr}
 
-\indexlibrary{\idxcode{uninitialized_value_construct_n}}%
+\begin{indexed}{\indexlibrary{\idxcode{uninitialized_value_construct_n}}}
 \begin{itemdecl}
 template<class ForwardIterator, class Size>
   ForwardIterator uninitialized_value_construct_n(ForwardIterator first, Size n);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -8425,11 +8437,12 @@ return {ifirst, ofirst};
 \end{codeblock}
 \end{itemdescr}
 
-\indexlibrary{\idxcode{uninitialized_copy_n}}%
+\begin{indexed}{\indexlibrary{\idxcode{uninitialized_copy_n}}}
 \begin{itemdecl}
 template<class InputIterator, class Size, class ForwardIterator>
   ForwardIterator uninitialized_copy_n(InputIterator first, Size n, ForwardIterator result);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -8729,11 +8742,12 @@ return first;
 \end{codeblock}
 \end{itemdescr}
 
-\indexlibrary{\idxcode{destroy_n}}%
+\begin{indexed}{\indexlibrary{\idxcode{destroy_n}}}
 \begin{itemdecl}
 template<class ForwardIterator, class Size>
   ForwardIterator destroy_n(ForwardIterator first, Size n);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -8768,19 +8782,15 @@ return destroy(counted_iterator(first, n), default_sentinel).base();
 \pnum
 \indexhdr{cstdlib}%
 \begin{note}
-The header \tcode{<cstdlib>}\iref{cstdlib.syn}
+The header \link{\tcode{<cstdlib>}}{cstdlib.syn}
 declares the functions described in this subclause.
 \end{note}
 
-\indexlibrary{\idxcode{aligned_alloc}}%
-\indexlibrary{\idxcode{calloc}}%
-\indexlibrary{\idxcode{malloc}}%
-\indexlibrary{\idxcode{realloc}}%
 \begin{itemdecl}
-void* aligned_alloc(size_t alignment, size_t size);
-void* calloc(size_t nmemb, size_t size);
-void* malloc(size_t size);
-void* realloc(void* ptr, size_t size);
+void* @\libentity{aligned_alloc}@(size_t alignment, size_t size);
+void* @\libentity{calloc}@(size_t nmemb, size_t size);
+void* @\libentity{malloc}@(size_t size);
+void* @\libentity{realloc}@(void* ptr, size_t size);
 \end{itemdecl}
 
 \begin{itemdescr}
@@ -9018,8 +9028,9 @@ namespace std {
 \pnum
 The default type for the template parameter \tcode{D} is
 \tcode{default_delete}. A client-supplied template argument
-\tcode{D} shall be a function
-object type\iref{function.objects}, lvalue reference to function, or
+\tcode{D} shall be a
+\deflinkx{function object type}{function object!type}{function.objects},
+lvalue reference to function, or
 lvalue reference to function object type
 for which, given
 a value \tcode{d} of type \tcode{D} and a value
@@ -9223,10 +9234,11 @@ to the stored deleter that was constructed from
 
 \rSec4[unique.ptr.single.dtor]{Destructor}
 
-\indexlibrary{\idxcode{unique_ptr}!destructor}%
+\begin{indexed}{\indexlibrary{\idxcode{unique_ptr}!destructor}}
 \begin{itemdecl}
 ~unique_ptr();
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -9397,10 +9409,11 @@ pointer release() noexcept;
 the call to \tcode{release}.
 \end{itemdescr}
 
-\indexlibrarymember{reset}{unique_ptr}%
+\begin{indexed}{\indexlibrarymember{reset}{unique_ptr}}
 \begin{itemdecl}
 void reset(pointer p = pointer()) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -9420,15 +9433,16 @@ destroys \tcode{*this} since \tcode{this->get()} is no longer a valid expression
 \end{note}
 \end{itemdescr}
 
-\indexlibrarymember{swap}{unique_ptr}%
+\begin{indexed}{\indexlibrarymember{swap}{unique_ptr}}
 \begin{itemdecl}
 void swap(unique_ptr& u) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
 \requires \tcode{get_deleter()} shall be
-swappable\iref{swappable.requirements} and shall
+\link{swappable}{swappable.requirements} and shall
 not throw an exception
 under \tcode{swap}.
 
@@ -9798,8 +9812,9 @@ common_type_t<typename unique_ptr<T1, D1>::pointer,
               typename unique_ptr<T2, D2>::pointer>
 \end{codeblock}
 Then the specialization
-\tcode{less<CT>} shall be a function object type\iref{function.objects} that
-induces a strict weak ordering\iref{alg.sorting} on the pointer values.
+\tcode{less<CT>} shall be a
+\deflinkx{function object type}{function object!type}{function.objects} that
+induces a \link{strict weak ordering}{alg.sorting} on the pointer values.
 
 \pnum
 \returns \tcode{less<CT>()(x.get(), y.get())}.
@@ -9879,9 +9894,9 @@ template<class T, class D>
 
 \begin{itemdescr}
 \pnum
-\requires The specialization \tcode{less<unique_ptr<T, D>::pointer>} shall be
-a function object type\iref{function.objects} that induces a strict weak
-ordering\iref{alg.sorting} on the pointer values.
+\requires The specialization \tcode{less<unique_ptr<T, D>::pointer>} shall be a
+\deflinkx{function object type}{function object!type}{function.objects}
+that induces a \link{strict weak ordering}{alg.sorting} on the pointer values.
 
 \pnum
 \returns
@@ -10114,7 +10129,7 @@ In the constructor definitions below,
 enables \tcode{shared_from_this} with \tcode{p},
 for a pointer \tcode{p} of type \tcode{Y*},
 means that if \tcode{Y} has an unambiguous and accessible base class
-that is a specialization of \tcode{enable_shared_from_this}\iref{util.smartptr.enab},
+that is a specialization of \link{\tcode{enable_shared_from_this}}{util.smartptr.enab},
 then \tcode{remove_cv_t<Y>*} shall be implicitly convertible to \tcode{T*} and
 the constructor evaluates the statement:
 \begin{codeblock}
@@ -10353,11 +10368,12 @@ than its previous value. \end{note}
 
 \rSec3[util.smartptr.shared.assign]{Assignment}
 
-\indexlibrarymember{operator=}{shared_ptr}%
+\begin{indexed}{\indexlibrarymember{operator=}{shared_ptr}}
 \begin{itemdecl}
 shared_ptr& operator=(const shared_ptr& r) noexcept;
 template<class Y> shared_ptr& operator=(const shared_ptr<Y>& r) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum\effects  Equivalent to \tcode{shared_ptr(r).swap(*this)}.
@@ -10519,10 +10535,11 @@ of the function shall be well-formed.
 \pnum\throws Nothing.
 \end{itemdescr}
 
-\indexlibrarymember{use_count}{shared_ptr}%
+\begin{indexed}{\indexlibrarymember{use_count}{shared_ptr}}
 \begin{itemdecl}
 long use_count() const noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum\returns  The number of \tcode{shared_ptr} objects, \tcode{*this} included,
@@ -10553,11 +10570,12 @@ explicit operator bool() const noexcept;
 \pnum\returns \tcode{get() != 0}.
 \end{itemdescr}
 
-\indexlibrarymember{owner_before}{shared_ptr}%
+\begin{indexed}{\indexlibrarymember{owner_before}{shared_ptr}}
 \begin{itemdecl}
 template<class U> bool owner_before(const shared_ptr<U>& b) const noexcept;
 template<class U> bool owner_before(const weak_ptr<U>& b) const noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -10584,8 +10602,6 @@ The common requirements that apply to all
 \tcode{allocate_shared_default_init} overloads,
 unless specified otherwise, are described below.
 
-\indexlibrary{\idxcode{make_shared}}%
-\indexlibrary{\idxcode{allocate_shared}}%
 \begin{itemdecl}
 template<class T, ...>
   shared_ptr<T> make_shared(@\placeholdernc{args}@);
@@ -10719,8 +10735,6 @@ allow for internal bookkeeping structures such as reference counts.
 \end{note}
 \end{itemdescr}
 
-\indexlibrary{\idxcode{make_shared}}%
-\indexlibrary{\idxcode{allocate_shared}}%
 \begin{itemdecl}
 template<class T, class... Args>
   shared_ptr<T> make_shared(Args&&... args);                    // \tcode{T} is not array
@@ -10750,8 +10764,6 @@ shared_ptr<vector<int>> q = make_shared<vector<int>>(16, 1);
 \end{example}
 \end{itemdescr}
 
-\indexlibrary{\idxcode{make_shared}}%
-\indexlibrary{\idxcode{allocate_shared}}%
 \begin{itemdecl}
 template<class T> shared_ptr<T>
   make_shared(size_t N);                                        // \tcode{T} is \tcode{U[]}
@@ -10965,13 +10977,14 @@ used as keys in associative containers.
 \end{note}
 \end{itemdescr}
 
-\indexlibrarymember{operator==}{shared_ptr}%
+\begin{indexed}{\indexlibrarymember{operator==}{shared_ptr}}
 \begin{itemdecl}
 template<class T>
   bool operator==(const shared_ptr<T>& a, nullptr_t) noexcept;
 template<class T>
   bool operator==(nullptr_t, const shared_ptr<T>& a) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -11135,13 +11148,14 @@ undefined behavior, attempting to delete the same object twice.
 \end{note}
 \end{itemdescr}
 
-\indexlibrarymember{const_pointer_cast}{shared_ptr}%
+\begin{indexed}{\indexlibrarymember{const_pointer_cast}{shared_ptr}}
 \begin{itemdecl}
 template<class T, class U>
   shared_ptr<T> const_pointer_cast(const shared_ptr<U>& r) noexcept;
 template<class T, class U>
   shared_ptr<T> const_pointer_cast(shared_ptr<U>&& r) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -11343,10 +11357,11 @@ template<class Y> weak_ptr(weak_ptr<Y>&& r) noexcept;
 
 \rSec3[util.smartptr.weak.dest]{Destructor}
 
-\indexlibrary{\idxcode{weak_ptr}!destructor}%
+\begin{indexed}{\indexlibrary{\idxcode{weak_ptr}!destructor}}
 \begin{itemdecl}
 ~weak_ptr();
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum\effects  Destroys this \tcode{weak_ptr} object but has no
@@ -11456,11 +11471,12 @@ both empty.
 
 \rSec3[util.smartptr.weak.spec]{Specialized algorithms}
 
-\indexlibrarymember{swap}{weak_ptr}%
+\begin{indexed}{\indexlibrarymember{swap}{weak_ptr}}
 \begin{itemdecl}
 template<class T>
   void swap(weak_ptr<T>& a, weak_ptr<T>& b) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum\effects Equivalent to \tcode{a.swap(b)}.
@@ -11472,7 +11488,7 @@ template<class T>
 The class template \tcode{owner_less} allows ownership-based mixed comparisons of shared
 and weak pointers.
 
-\indexlibrary{\idxcode{owner_less}}%
+\begin{indexed}{\indexlibrary{\idxcode{owner_less}}}
 \begin{codeblock}
 namespace std {
   template<class T = void> struct owner_less;
@@ -11503,6 +11519,7 @@ namespace std {
   };
 }
 \end{codeblock}
+\end{indexed}
 
 \indexlibrarymember{operator()}{owner_less}%
 \pnum \tcode{operator()(x, y)} shall return \tcode{x.owner_before(y)}. \begin{note}
@@ -11716,10 +11733,11 @@ constexpr atomic() noexcept = default;
 Initializes \tcode{p\{\}}.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{atomic<shared_ptr<T>>}!constructor}%
+\begin{indexed}{\indexlibrary{\idxcode{atomic<shared_ptr<T>>}!constructor}}
 \begin{itemdecl}
 atomic(shared_ptr<T> desired) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -11758,10 +11776,11 @@ the value of \tcode{desired} as if by \tcode{p.swap(desired)}.
 Memory is affected according to the value of \tcode{order}.
 \end{itemdescr}
 
-\indexlibrarymember{operator=}{atomic<shared_ptr<T>>}%
+\begin{indexed}{\indexlibrarymember{operator=}{atomic<shared_ptr<T>>}}
 \begin{itemdecl}
 void operator=(shared_ptr<T> desired) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -12189,8 +12208,8 @@ namespace std::pmr {
 \pnum
 The \tcode{memory_resource} class is an abstract interface to an unbounded set of classes encapsulating memory resources.
 
-\indexlibrary{\idxcode{memory_resource}}%
-\indexlibrarymember{operator=}{memory_resource}%
+\begin{indexed}{\indexlibrary{\idxcode{memory_resource}}%
+\indexlibrarymember{operator=}{memory_resource}}
 \begin{codeblock}
 namespace std::pmr {
   class memory_resource {
@@ -12216,14 +12235,16 @@ namespace std::pmr {
   };
 }
 \end{codeblock}
+\end{indexed}
 
 
 \rSec3[mem.res.public]{Public member functions}
 
-\indexlibrary{\idxcode{memory_resource}!destructor}%
+\begin{indexed}{\indexlibrary{\idxcode{memory_resource}!destructor}}
 \begin{itemdecl}
 ~memory_resource();
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -12231,10 +12252,11 @@ namespace std::pmr {
 Destroys this \tcode{memory_resource}.
 \end{itemdescr}
 
-\indexlibrarymember{allocate}{memory_resource}%
+\begin{indexed}{\indexlibrarymember{allocate}{memory_resource}}
 \begin{itemdecl}
 [[nodiscard]] void* allocate(size_t bytes, size_t alignment = max_align);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -12242,10 +12264,11 @@ Destroys this \tcode{memory_resource}.
 Equivalent to: \tcode{return do_allocate(bytes, alignment);}
 \end{itemdescr}
 
-\indexlibrarymember{deallocate}{memory_resource}%
+\begin{indexed}{\indexlibrarymember{deallocate}{memory_resource}}
 \begin{itemdecl}
 void deallocate(void* p, size_t bytes, size_t alignment = max_align);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -12253,10 +12276,11 @@ void deallocate(void* p, size_t bytes, size_t alignment = max_align);
 Equivalent to \tcode{do_deallocate(p, bytes, alignment)}.
 \end{itemdescr}
 
-\indexlibrarymember{is_equal}{memory_resource}%
+\begin{indexed}{\indexlibrarymember{is_equal}{memory_resource}}
 \begin{itemdecl}
 bool is_equal(const memory_resource& other) const noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -12455,10 +12479,11 @@ Sets \tcode{memory_rsrc} to \tcode{other.resource()}.
 
 \rSec3[mem.poly.allocator.mem]{Member functions}
 
-\indexlibrarymember{allocate}{polymorphic_allocator}%
+\begin{indexed}{\indexlibrarymember{allocate}{polymorphic_allocator}}
 \begin{itemdecl}
 [[nodiscard]] Tp* allocate(size_t n);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -12470,10 +12495,11 @@ return static_cast<Tp*>(memory_rsrc->allocate(n * sizeof(Tp), alignof(Tp)));
 \end{codeblock}
 \end{itemdescr}
 
-\indexlibrarymember{deallocate}{polymorphic_allocator}%
+\begin{indexed}{\indexlibrarymember{deallocate}{polymorphic_allocator}}
 \begin{itemdecl}
 void deallocate(Tp* p, size_t n);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -12868,11 +12894,11 @@ Calls \tcode{release()}.
 
 \rSec3[mem.res.pool.mem]{Members}
 
-\indexlibrarymember{release}{synchronized_pool_resource}%
-\indexlibrarymember{release}{unsynchronized_pool_resource}%
+\begin{indexed}{\indexlibrarymember{release}{synchronized_pool_resource}\indexlibrarymember{release}{unsynchronized_pool_resource}}
 \begin{itemdecl}
 void release();
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -13325,10 +13351,11 @@ using inner_allocator_type = @\seebelow@;
 zero; otherwise,\\ \tcode{scoped_allocator_adaptor<InnerAllocs...>}.
 \end{itemdescr}
 
-\indexlibrarymember{propagate_on_container_copy_assignment}{scoped_allocator_adaptor}%
+\begin{indexed}{\indexlibrarymember{propagate_on_container_copy_assignment}{scoped_allocator_adaptor}}
 \begin{itemdecl}
 using propagate_on_container_copy_assignment = @\seebelow@;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -13338,10 +13365,11 @@ using propagate_on_container_copy_assignment = @\seebelow@;
 \tcode{InnerAllocs...}; otherwise, \tcode{false_type}.
 \end{itemdescr}
 
-\indexlibrarymember{propagate_on_container_move_assignment}{scoped_allocator_adaptor}%
+\begin{indexed}{\indexlibrarymember{propagate_on_container_move_assignment}{scoped_allocator_adaptor}}
 \begin{itemdecl}
 using propagate_on_container_move_assignment = @\seebelow@;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -13351,10 +13379,11 @@ using propagate_on_container_move_assignment = @\seebelow@;
 \tcode{InnerAllocs...}; otherwise, \tcode{false_type}.
 \end{itemdescr}
 
-\indexlibrarymember{propagate_on_container_swap}{scoped_allocator_adaptor}%
+\begin{indexed}{\indexlibrarymember{propagate_on_container_swap}{scoped_allocator_adaptor}}
 \begin{itemdecl}
 using propagate_on_container_swap = @\seebelow@;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -13408,10 +13437,11 @@ allocator from the argument list).
 \tcode{is_constructible_v<OuterAlloc, OuterA2>} is \tcode{true}.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{scoped_allocator_adaptor}!constructor}%
+\begin{indexed}{\indexlibrary{\idxcode{scoped_allocator_adaptor}!constructor}}
 \begin{itemdecl}
 scoped_allocator_adaptor(const scoped_allocator_adaptor& other) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -13419,10 +13449,11 @@ scoped_allocator_adaptor(const scoped_allocator_adaptor& other) noexcept;
 from \tcode{other}.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{scoped_allocator_adaptor}!constructor}%
+\begin{indexed}{\indexlibrary{\idxcode{scoped_allocator_adaptor}!constructor}}
 \begin{itemdecl}
 scoped_allocator_adaptor(scoped_allocator_adaptor&& other) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -13634,14 +13665,14 @@ template<class OuterA1, class OuterA2, class... InnerAllocs>
 \rSec1[function.objects]{Function objects}
 
 \pnum
-A \defnx{function object type}{function object!type} is an object
-type\iref{basic.types} that can be the type of the
+A \defnx{function object type}{function object!type} is an
+\deflink{object type}{basic.types} that can be the type of the
 \grammarterm{postfix-expression} in a function call
 (\ref{expr.call}, \ref{over.match.call}).\footnote{Such a type is a function
 pointer or a class type which has a member \tcode{operator()} or a class type
 which has a conversion to a pointer to function.} A \defn{function object} is an
 object of a function object type. In the places where one would expect to pass a
-pointer to a function to an algorithmic template\iref{algorithms}, the
+pointer to a function to an \link{algorithmic template}{algorithms}, the
 interface is specified to accept a function object. This not only makes
 algorithmic templates work with pointers to functions, but also enables them to
 work with arbitrary function objects.
@@ -13860,7 +13891,7 @@ A \defn{call signature} is the name of a return type followed by a
 parenthesized comma-separated list of zero or more argument types.
 
 \pnum
-A \defnadj{callable}{type} is a function object type\iref{function.objects} or a pointer to member.
+A \defnadj{callable}{type} is a \deflinkx{function object type}{function object!type}{function.objects} or a pointer to member.
 
 \pnum
 A \defnadj{callable}{object} is an object of a callable type.
@@ -13889,8 +13920,7 @@ collectively referred to as \defnx{state entities}{state entity}.
 \rSec2[func.require]{Requirements}
 
 \pnum
-\indexlibrary{invoke@\tcode{\placeholder{INVOKE}}}%
-Define \tcode{\placeholdernc{INVOKE}(f, t$_1$, t$_2$, $\dotsc$, t$_N$)} as follows:
+Define \indexedspan{\tcode{\placeholdernc{INVOKE}(f, t$_1$, t$_2$, $\dotsc$, t$_N$)}}{\indexlibrary{invoke@\tcode{\placeholder{INVOKE}}}} as follows:
 
 \begin{itemize}
 \item \tcode{(t$_1$.*f)(t$_2$, $\dotsc$, t$_N$)} when \tcode{f} is a pointer to a
@@ -13991,18 +14021,20 @@ a given standard library function template have the same type
 if the types of their corresponding state entities are the same.
 
 \rSec2[func.invoke]{Function template \tcode{invoke}}
-\indexlibrary{\idxcode{invoke}}%
 \indexlibrary{invoke@\tcode{\placeholder{INVOKE}}}%
+\begin{indexed}{\indexlibrary{\idxcode{invoke}}}
 \begin{itemdecl}
 template<class F, class... Args>
   invoke_result_t<F, Args...> invoke(F&& f, Args&&... args)
     noexcept(is_nothrow_invocable_v<F, Args...>);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
 \returns
-\tcode{\placeholdernc{INVOKE}(std::forward<F>(f), std::forward<Args>(args)...)}\iref{func.require}.
+\liblinkx{\tcode{\placeholdernc{INVOKE}}}{INVOKE}{func.require}%
+\tcode{(std::forward<F>(f), std::forward<Args>(args)...)}.
 \end{itemdescr}
 
 \rSec2[refwrap]{Class template \tcode{reference_wrapper}}
@@ -14042,7 +14074,8 @@ namespace std {
 around a reference to an object or function of type \tcode{T}.
 
 \pnum
-\tcode{reference_wrapper<T>} is a trivially copyable type\iref{basic.types}.
+\tcode{reference_wrapper<T>} is a
+\deflinkx{trivially copyable type}{trivially copyable types}{basic.types}.
 
 \pnum
 The template parameter \tcode{T} of \tcode{reference_wrapper}
@@ -14452,12 +14485,13 @@ is also consistent with the partial order imposed by those built-in operators.
 
 \rSec3[comparisons.equal_to]{Class template \tcode{equal_to}}
 
-\indexlibrary{\idxcode{equal_to}}%
+\begin{indexed}{\indexlibrary{\idxcode{equal_to}}}
 \begin{itemdecl}
 template<class T = void> struct equal_to {
   constexpr bool operator()(const T& x, const T& y) const;
 };
 \end{itemdecl}
+\end{indexed}
 
 \indexlibrarymember{operator()}{equal_to}%
 \begin{itemdecl}
@@ -14516,11 +14550,12 @@ template<> struct not_equal_to<void> {
 };
 \end{itemdecl}
 
-\indexlibrarymember{operator()}{not_equal_to<>}%
+\begin{indexed}{\indexlibrarymember{operator()}{not_equal_to<>}}
 \begin{itemdecl}
 template<class T, class U> constexpr auto operator()(T&& t, U&& u) const
     -> decltype(std::forward<T>(t) != std::forward<U>(u));
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum\returns \tcode{std::forward<T>(t) != std::forward<U>(u)}.
@@ -14642,12 +14677,13 @@ template<class T, class U> constexpr auto operator()(T&& t, U&& u) const
 
 \rSec3[comparisons.less_equal]{Class template \tcode{less_equal}}
 
-\indexlibrary{\idxcode{less_equal}}%
+\begin{indexed}{\indexlibrary{\idxcode{less_equal}}}
 \begin{itemdecl}
 template<class T = void> struct less_equal {
   constexpr bool operator()(const T& x, const T& y) const;
 };
 \end{itemdecl}
+\end{indexed}
 
 \indexlibrarymember{operator()}{less_equal}%
 \begin{itemdecl}
@@ -14944,12 +14980,13 @@ operators in the language~(\ref{expr.log.and}, \ref{expr.log.or}, \ref{expr.unar
 
 \rSec3[logical.operations.and]{Class template \tcode{logical_and}}
 
-\indexlibrary{\idxcode{logical_and}}%
+\begin{indexed}{\indexlibrary{\idxcode{logical_and}}}
 \begin{itemdecl}
 template<class T = void> struct logical_and {
   constexpr bool operator()(const T& x, const T& y) const;
 };
 \end{itemdecl}
+\end{indexed}
 
 \indexlibrarymember{operator()}{logical_and}%
 \begin{itemdecl}
@@ -14982,12 +15019,13 @@ template<class T, class U> constexpr auto operator()(T&& t, U&& u) const
 
 \rSec3[logical.operations.or]{Class template \tcode{logical_or}}
 
-\indexlibrary{\idxcode{logical_or}}%
+\begin{indexed}{\indexlibrary{\idxcode{logical_or}}}
 \begin{itemdecl}
 template<class T = void> struct logical_or {
   constexpr bool operator()(const T& x, const T& y) const;
 };
 \end{itemdecl}
+\end{indexed}
 
 \indexlibrarymember{operator()}{logical_or}%
 \begin{itemdecl}
@@ -15020,12 +15058,13 @@ template<class T, class U> constexpr auto operator()(T&& t, U&& u) const
 
 \rSec3[logical.operations.not]{Class template \tcode{logical_not}}
 
-\indexlibrary{\idxcode{logical_not}}%
+\begin{indexed}{\indexlibrary{\idxcode{logical_not}}}
 \begin{itemdecl}
 template<class T = void> struct logical_not {
   constexpr bool operator()(const T& x) const;
 };
 \end{itemdecl}
+\end{indexed}
 
 \indexlibrarymember{operator()}{logical_not}%
 \begin{itemdecl}
@@ -15066,12 +15105,13 @@ operators in the language~(\ref{expr.bit.and}, \ref{expr.or},
 
 \rSec3[bitwise.operations.and]{Class template \tcode{bit_and}}
 
-\indexlibrary{\idxcode{bit_and}}%
+\begin{indexed}{\indexlibrary{\idxcode{bit_and}}}
 \begin{itemdecl}
 template<class T = void> struct bit_and {
   constexpr T operator()(const T& x, const T& y) const;
 };
 \end{itemdecl}
+\end{indexed}
 
 \indexlibrarymember{operator()}{bit_and}%
 \begin{itemdecl}
@@ -15104,12 +15144,13 @@ template<class T, class U> constexpr auto operator()(T&& t, U&& u) const
 
 \rSec3[bitwise.operations.or]{Class template \tcode{bit_or}}
 
-\indexlibrary{\idxcode{bit_or}}%
+\begin{indexed}{\indexlibrary{\idxcode{bit_or}}}
 \begin{itemdecl}
 template<class T = void> struct bit_or {
   constexpr T operator()(const T& x, const T& y) const;
 };
 \end{itemdecl}
+\end{indexed}
 
 \indexlibrarymember{operator()}{bit_or}%
 \begin{itemdecl}
@@ -15130,11 +15171,12 @@ template<> struct bit_or<void> {
 };
 \end{itemdecl}
 
-\indexlibrarymember{operator()}{bit_or<>}%
+\begin{indexed}{\indexlibrarymember{operator()}{bit_or<>}}
 \begin{itemdecl}
 template<class T, class U> constexpr auto operator()(T&& t, U&& u) const
     -> decltype(std::forward<T>(t) | std::forward<U>(u));
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum\returns \tcode{std::forward<T>(t) | std::forward<U>(u)}.
@@ -15142,12 +15184,13 @@ template<class T, class U> constexpr auto operator()(T&& t, U&& u) const
 
 \rSec3[bitwise.operations.xor]{Class template \tcode{bit_xor}}
 
-\indexlibrary{\idxcode{bit_xor}}%
+\begin{indexed}{\indexlibrary{\idxcode{bit_xor}}}
 \begin{itemdecl}
 template<class T = void> struct bit_xor {
   constexpr T operator()(const T& x, const T& y) const;
 };
 \end{itemdecl}
+\end{indexed}
 
 \indexlibrarymember{operator()}{bit_xor}%
 \begin{itemdecl}
@@ -15195,7 +15238,7 @@ constexpr T operator()(const T& x) const;
 \pnum\returns \tcode{\~{}x}.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{bit_not<>}}%
+\begin{indexed}{\indexlibrary{\idxcode{bit_not<>}}}
 \begin{itemdecl}
 template<> struct bit_not<void> {
   template<class T> constexpr auto operator()(T&& t) const
@@ -15204,6 +15247,7 @@ template<> struct bit_not<void> {
   using is_transparent = @\unspec@;
 };
 \end{itemdecl}
+\end{indexed}
 
 \indexlibrarymember{operator()}{bit_not<>}%
 \begin{itemdecl}
@@ -15558,14 +15602,15 @@ extern @\unspec@ _1;
 \rSec2[func.memfn]{Function template \tcode{mem_fn}}%
 \indextext{function object!\idxcode{mem_fn}|(}
 
-\indexlibrary{\idxcode{mem_fn}}%
+\begin{indexed}{\indexlibrary{\idxcode{mem_fn}}}
 \begin{itemdecl}
 template<class R, class T> @\unspec@ mem_fn(R T::* pm) noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
-\returns A simple call wrapper\iref{func.def} \tcode{fn}
+\returns A simple \deflink{call wrapper}{func.def} \tcode{fn}
 such that the expression \tcode{fn(t, a$_2$, $\dotsc$, a$_N$)} is equivalent
 to \tcode{\placeholdernc{INVOKE}(pm, t, a$_2$, $\dotsc$, a$_N$)}\iref{func.require}.
 \end{itemdescr}
@@ -15682,23 +15727,23 @@ namespace std {
 \pnum
 The \tcode{function} class template provides polymorphic wrappers that
 generalize the notion of a function pointer. Wrappers can store, copy,
-and call arbitrary callable objects\iref{func.def}, given a call
-signature\iref{func.def}, allowing functions to be first-class objects.
+and call arbitrary \deflinkx{callable objects}{callable object}{func.def}, given a
+\deflink{call signature}{func.def}, allowing functions to be first-class objects.
 
 \pnum
 \indextext{callable type}%
-A callable type\iref{func.def} \tcode{F}
+A \deflink{callable type}{func.def} \tcode{F}
 is \defn{Lvalue-Callable} for argument
 types \tcode{ArgTypes}
 and return type \tcode{R}
 if the expression
 \tcode{\placeholdernc{INVOKE}<R>(declval<F\&>(), declval<ArgTypes>()...)},
-considered as an unevaluated operand\iref{expr.prop}, is
+considered as an \deflink{unevaluated operand}{expr.prop}, is
 well-formed\iref{func.require}.
 
 \pnum
-The \tcode{function} class template is a call
-wrapper\iref{func.def} whose call signature\iref{func.def}
+The \tcode{function} class template is a
+\deflink{call wrapper}{func.def} whose \deflink{call signature}{func.def}
 is \tcode{R(ArgTypes...)}.
 
 \pnum
@@ -15779,7 +15824,7 @@ template<class F> function(F f);
 
 \pnum
 \remarks This constructor template shall not participate in overload resolution unless
-\tcode{F} is Lvalue-Callable\iref{func.wrap.func} for argument types
+\tcode{F} is \deflink{Lvalue-Callable}{func.wrap.func} for argument types
 \tcode{ArgTypes...} and return type \tcode{R}.
 
 \pnum
@@ -15882,7 +15927,7 @@ template<class F> function& operator=(F&& f);
 
 \pnum\remarks This assignment operator shall not participate in overload
 resolution unless \tcode{decay_t<F>} is
-Lvalue-Callable\iref{func.wrap.func} for argument types \tcode{ArgTypes...} and
+\deflink{Lvalue-Callable}{func.wrap.func} for argument types \tcode{ArgTypes...} and
 return type \tcode{R}.
 \end{itemdescr}
 
@@ -15920,10 +15965,11 @@ void swap(function& other) noexcept;
 
 \rSec4[func.wrap.func.cap]{Capacity}
 
-\indexlibrarymember{operator bool}{function}%
+\begin{indexed}{\indexlibrarymember{operator bool}{function}}
 \begin{itemdecl}
 explicit operator bool() const noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -15932,16 +15978,16 @@ explicit operator bool() const noexcept;
 
 \rSec4[func.wrap.func.inv]{Invocation}
 
-\indexlibrary{\idxcode{function}!invocation}%
-\indexlibrarymember{operator()}{function}%
+\begin{indexed}{\indexlibrary{\idxcode{function}!invocation}\indexlibrarymember{operator()}{function}}
 \begin{itemdecl}
 R operator()(ArgTypes... args) const;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
 \returns \tcode{\placeholdernc{INVOKE}<R>(f, std::forward<ArgTypes>(args)...)}\iref{func.require},
-where \tcode{f} is the target object\iref{func.def} of \tcode{*this}.
+where \tcode{f} is the \deflink{target object}{func.def} of \tcode{*this}.
 
 \pnum\throws
 \tcode{bad_function_call} if \tcode{!*this}; otherwise, any
@@ -15950,21 +15996,23 @@ exception thrown by the wrapped callable object.
 
 \rSec4[func.wrap.func.targ]{Target access}
 
-\indexlibrarymember{target_type}{function}%
+\begin{indexed}{\indexlibrarymember{target_type}{function}}
 \begin{itemdecl}
 const type_info& target_type() const noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum\returns If \tcode{*this} has a target of type \tcode{T},
   \tcode{typeid(T)}; otherwise, \tcode{typeid(void)}.
 \end{itemdescr}
 
-\indexlibrarymember{target}{function}%
+\begin{indexed}{\indexlibrarymember{target}{function}}
 \begin{itemdecl}
 template<class T>       T* target() noexcept;
 template<class T> const T* target() const noexcept;
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum\returns If \tcode{target_type() == typeid(T)}
@@ -16013,7 +16061,8 @@ template<class R, class... ArgTypes>
 \rSec2[func.search]{Searchers}
 
 \pnum
-This subclause provides function object types\iref{function.objects} for
+This subclause provides
+\deflinkx{function object types}{function object!type}{function.objects} for
 operations that search for a sequence \range{pat\textunderscore\nobreak first}{pat_last} in another
 sequence \range{first}{last} that is provided to the object's function call
 operator.  The first sequence (the pattern to be searched for) is provided to
@@ -16326,7 +16375,7 @@ these values are \tcode{false}:
 \tcode{is_copy_assignable_v<H>}, and
 \tcode{is_move_assignable_v<H>}.
 Disabled specializations of \tcode{hash}
-are not function object types\iref{function.objects}.
+are not \deflinkx{function object types}{function object!type}{function.objects}.
 \begin{note}
 This means that the specialization of \tcode{hash} exists, but
 any attempts to use it as a \oldconcept{Hash} will be ill-formed.
@@ -16365,7 +16414,7 @@ type transformations allow certain properties of types to be manipulated.
 
 \pnum
 \indextext{signal-safe!type traits}%
-All functions specified in this subclause are signal-safe\iref{support.signal}.
+All functions specified in this subclause are \deflinkx{signal-safe}{evaluation!signal-safe}{support.signal}.
 
 \rSec2[meta.rqmts]{Requirements}
 
@@ -16378,7 +16427,7 @@ property being described. It shall be \oldconcept{DefaultConstructible},
 and publicly and unambiguously derived, directly or indirectly, from
 its \defn{base characteristic}, which is
 a specialization of the template
-\tcode{integral_constant}\iref{meta.help}, with
+\linkx{\tcode{integral_constant}}{\idxcode{integral_constant}}{meta.help}, with
 the arguments to the template \tcode{integral_constant} determined by the
 requirements for the particular property being described.
 The member names of the base characteristic shall not be hidden and shall be
@@ -16394,7 +16443,7 @@ and publicly and unambiguously derived, directly or
 indirectly, from
 its \term{base characteristic}, which is a specialization
 of the template
-\tcode{integral_constant}\iref{meta.help}, with
+\linkx{\tcode{integral_constant}}{\idxcode{integral_constant}}{meta.help}, with
 the arguments to the template \tcode{integral_constant} determined by the
 requirements for the particular relationship being described.
 The member names of the base characteristic shall not be hidden and shall be
@@ -16843,6 +16892,7 @@ namespace std {
 \rSec2[meta.help]{Helper classes}
 
 \indexlibrarymember{value_type}{integral_constant}%
+\begin{indexed}{\indexlibrary{\idxcode{integral_constant}}}
 \begin{codeblock}
 namespace std {
   template<class T, T v> struct integral_constant {
@@ -16856,8 +16906,8 @@ namespace std {
   };
 }
 \end{codeblock}
+\end{indexed}
 
-\indexlibrary{\idxcode{integral_constant}}%
 \indexlibrary{\idxcode{bool_constant}}%
 \indexlibrary{\idxcode{true_type}}%
 \indexlibrary{\idxcode{false_type}}%
@@ -16926,7 +16976,7 @@ has a \tcode{value} member that evaluates to \tcode{true}.
 \tcode{template<class T>}\br
  \tcode{struct is_array;}           &
 \tcode{T} is an array type\iref{basic.compound} of known or unknown extent    &
-Class template \tcode{array}\iref{array}
+Class template \link{\tcode{array}}{array}
 is not an array type.                   \\ \rowsep
 \indexlibrary{\idxcode{is_pointer}}%
 \tcode{template<class T>}\br
@@ -16993,27 +17043,27 @@ For any given type \tcode{T}, the result of applying one of these templates to
 \indexlibrary{\idxcode{is_arithmetic}}%
 \tcode{template<class T>}\br
  \tcode{struct is_arithmetic;}          &
- \tcode{T} is an arithmetic type\iref{basic.fundamental}              &   \\ \rowsep
+ \tcode{T} is an \deflinkx{arithmetic type}{type!arithmetic}{basic.fundamental}              &   \\ \rowsep
 \indexlibrary{\idxcode{is_fundamental}}%
 \tcode{template<class T>}\br
  \tcode{struct is_fundamental;}         &
- \tcode{T} is a fundamental type\iref{basic.fundamental}              &   \\ \rowsep
+ \tcode{T} is a \link{fundamental type}{basic.fundamental}              &   \\ \rowsep
 \indexlibrary{\idxcode{is_object}}%
 \tcode{template<class T>}\br
  \tcode{struct is_object;}              &
- \tcode{T} is an object type\iref{basic.types}                            &   \\ \rowsep
+ \tcode{T} is an \deflink{object type}{basic.types}                            &   \\ \rowsep
 \indexlibrary{\idxcode{is_scalar}}%
 \tcode{template<class T>}\br
  \tcode{struct is_scalar;}              &
- \tcode{T} is a scalar type\iref{basic.types}                         &   \\ \rowsep
+ \tcode{T} is a \deflink{scalar type}{basic.types}                         &   \\ \rowsep
 \indexlibrary{\idxcode{is_compound}}%
 \tcode{template<class T>}\br
  \tcode{struct is_compound;}            &
- \tcode{T} is a compound type\iref{basic.compound}                        &   \\ \rowsep
+ \tcode{T} is a \link{compound type}{basic.compound}                        &   \\ \rowsep
 \indexlibrary{\idxcode{is_member_pointer}}%
 \tcode{template<class T>}\br
  \tcode{struct is_member_pointer;}      &
- \tcode{T} is a pointer-to-member type\iref{basic.compound}               &   \\
+ \tcode{T} is a \deflink{pointer-to-member}{basic.compound} type               &   \\
 \end{libreqtab3b}
 
 \rSec3[meta.unary.prop]{Type properties}
@@ -17037,7 +17087,7 @@ the argument is a complete type.
 For the purpose of defining the templates in this subclause,
 a function call expression \tcode{declval<T>()} for any type \tcode{T}
 is considered to be a trivial~(\ref{basic.types}, \ref{special}) function call
-that is not an odr-use\iref{basic.def.odr} of \tcode{declval}
+that is not an \link{odr-use}{basic.def.odr} of \tcode{declval}
 in the context of the corresponding definition
 notwithstanding the restrictions of~\ref{declval}.
 
@@ -17169,8 +17219,8 @@ notwithstanding the restrictions of~\ref{declval}.
 \tcode{template<class T, class U>}\br
   \tcode{struct is_assignable;} &
   The expression \tcode{declval<T>() =} \tcode{declval<U>()} is well-formed
-  when treated as an unevaluated
-  operand\iref{expr.prop}. Access checking is performed as if in a context
+  when treated as an \deflink{unevaluated
+  operand}{expr.prop}. Access checking is performed as if in a context
   unrelated to \tcode{T} and \tcode{U}. Only the validity of the immediate context
   of the assignment expression is considered. \begin{note} The compilation of the
   expression can result in side effects such as the instantiation of class template
@@ -17201,7 +17251,7 @@ notwithstanding the restrictions of~\ref{declval}.
   \tcode{struct is_swappable_with;} &
   The expressions \tcode{swap(declval<T>(), declval<U>())} and
   \tcode{swap(declval<U>(), declval<T>())} are each well-formed
-  when treated as an unevaluated operand\iref{expr.prop}
+  when treated as an \deflink{unevaluated operand}{expr.prop}
   in an overload-resolution context
   for swappable values\iref{swappable.requirements}.
   Access checking is performed as if in a context
@@ -17238,7 +17288,7 @@ notwithstanding the restrictions of~\ref{declval}.
   for which the expression
   \tcode{declval<U\&>().\~U()}
   is well-formed
-  when treated as an unevaluated operand\iref{expr.prop},
+  when treated as an \deflink{unevaluated operand}{expr.prop},
   where \tcode{U} is
   \tcode{remove_all_extents_t<T>}. &
   \tcode{T} shall be a complete type, \cv{}~\tcode{void},
@@ -17247,7 +17297,7 @@ notwithstanding the restrictions of~\ref{declval}.
 \indexlibrary{\idxcode{is_trivially_constructible}}%
 \tcode{template<class T, class... Args>}\br
   \tcode{struct}\br
-  \tcode{is_trivially_constructible;} &
+  \tcode{\libentity{is_trivially_constructible};} &
   \tcode{is_constructible_v<T,}\br
   \tcode{Args...>} is \tcode{true} and the variable
   definition for \tcode{is_constructible}, as defined below, is known to call
@@ -17337,9 +17387,8 @@ notwithstanding the restrictions of~\ref{declval}.
  \cv{}~\tcode{void}, or an array of unknown
  bound.                \\ \rowsep
 
-\indexlibrary{\idxcode{is_nothrow_copy_constructible}}%
-\tcode{template<class T>}\br
- \tcode{struct is_nothrow_copy_constructible;}      &
+\tcode{template <class T>}\br
+ \tcode{struct \libentity{is_nothrow_copy_constructible};}      &
   For a referenceable type \tcode{T}, the same result as
  \tcode{is_nothrow_constructible_v<T, const T\&>}, otherwise \tcode{false}. &
  \tcode{T} shall be a complete type,
@@ -17672,7 +17721,7 @@ not possibly cv-qualified versions of the same type,
 For the purpose of defining the templates in this subclause,
 a function call expression \tcode{declval<T>()} for any type \tcode{T}
 is considered to be a trivial~(\ref{basic.types}, \ref{special}) function call
-that is not an odr-use\iref{basic.def.odr} of \tcode{declval}
+that is not an \link{odr-use}{basic.def.odr} of \tcode{declval}
 in the context of the corresponding definition
 notwithstanding the restrictions of~\ref{declval}.
 
@@ -17813,7 +17862,7 @@ Each of the templates in this subclause shall be a
 \indexlibrary{\idxcode{add_lvalue_reference}}%
 \tcode{template<class T>\br
  struct add_lvalue_reference;}                     &
- If \tcode{T} names a referenceable type\iref{defns.referenceable} then
+ If \tcode{T} names a \link{referenceable type}{defns.referenceable} then
  the member typedef \tcode{type} names \tcode{T\&};
  otherwise, \tcode{type} names \tcode{T}.
  \begin{note}
@@ -17845,14 +17894,14 @@ Each of the templates in this subclause shall be a
 \indexlibrary{\idxcode{make_signed}}%
 \tcode{template<class T>}\br
  \tcode{struct make_signed;} &
- If \tcode{T} names a (possibly cv-qualified) signed integer
- type\iref{basic.fundamental} then the member typedef
+ If \tcode{T} names a (possibly cv-qualified)
+ \deflink{signed integer type}{basic.fundamental} then the member typedef
  \tcode{type} names the type \tcode{T}; otherwise,
  if \tcode{T} names a (possibly cv-qualified) unsigned integer
  type then \tcode{type} names the corresponding
  signed integer type, with the same cv-qualifiers as \tcode{T};
- otherwise, \tcode{type} names the signed integer type with smallest
- rank\iref{conv.rank} for which
+ otherwise, \tcode{type} names the signed integer type with \link{smallest
+ rank}{conv.rank} for which
  \tcode{sizeof(T) == sizeof(type)}, with the same
  cv-qualifiers as \tcode{T}.\br
  \requires{} \tcode{T} shall be a (possibly cv-qualified)
@@ -17862,14 +17911,14 @@ Each of the templates in this subclause shall be a
 \indexlibrary{\idxcode{make_unsigned}}%
 \tcode{template<class T>}\br
  \tcode{struct make_unsigned;} &
- If \tcode{T} names a (possibly cv-qualified) unsigned integer
- type\iref{basic.fundamental} then the member typedef
+ If \tcode{T} names a (possibly cv-qualified)
+ \deflink{unsigned integer type}{basic.fundamental} then the member typedef
  \tcode{type} names the type \tcode{T}; otherwise,
  if \tcode{T} names a (possibly cv-qualified) signed integer
  type then \tcode{type} names the corresponding
  unsigned integer type, with the same cv-qualifiers as \tcode{T};
- otherwise, \tcode{type} names the unsigned integer type with smallest
- rank\iref{conv.rank} for which
+ otherwise, \tcode{type} names the unsigned integer type with \link{smallest
+ rank}{conv.rank} for which
  \tcode{sizeof(T) == sizeof(type)}, with the same
  cv-qualifiers as \tcode{T}.\br
  \requires{} \tcode{T} shall be a (possibly cv-qualified)
@@ -17946,7 +17995,7 @@ assert((is_same_v<remove_all_extents_t<int[][3]>, int>));
 \indexlibrary{\idxcode{add_pointer}}%
 \tcode{template<class T>\br
  struct add_pointer;}                       &
- If \tcode{T} names a referenceable type\iref{defns.referenceable} or a
+ If \tcode{T} names a \link{referenceable type}{defns.referenceable} or a
  \cv{}~\tcode{void} type then
  the member typedef \tcode{type} names the same type as
  \tcode{remove_reference_t<T>*};
@@ -18066,14 +18115,14 @@ assert((is_same_v<remove_all_extents_t<int[][3]>, int>));
  &
  The member typedef \tcode{type} names the underlying type
  of \tcode{T}.\br
- \requires{} \tcode{T} shall be a complete enumeration type\iref{dcl.enum} \\ \rowsep
+ \requires{} \tcode{T} shall be a complete \link{enumeration type}{dcl.enum} \\ \rowsep
 
 \tcode{template<class Fn,}\br
  \tcode{class... ArgTypes>}\br
  \tcode{struct invoke_result;}
  &
  If the expression \tcode{\placeholdernc{INVOKE}(declval<Fn>(), declval<ArgTypes>()...)}
- is well-formed when treated as an unevaluated operand\iref{expr.prop},
+ is well-formed when treated as an \deflink{unevaluated operand}{expr.prop},
  the member typedef \tcode{type} names the type
  \tcode{decltype(\placeholdernc{INVOKE}(declval<Fn>(), declval<ArgTypes>()...))};
  otherwise, there shall be no member \tcode{type}. Access checking is
@@ -18092,9 +18141,8 @@ assert((is_same_v<remove_all_extents_t<int[][3]>, int>));
  unknown bound.\\
 \end{libreqtab2a}
 
-\indexlibrary{\idxcode{aligned_storage}}%
 \pnum
-\begin{note} A typical implementation would define \tcode{aligned_storage} as:
+\begin{note} A typical implementation would define \libentity{aligned_storage} as:
 
 \begin{codeblock}
 template<size_t Len, size_t Alignment>
@@ -18330,10 +18378,11 @@ static_assert(is_same_v<invoke_result_t<PMD, const S*>, const char&>);
 This subclause describes type traits for applying logical operators
 to other type traits.
 
-\indexlibrary{\idxcode{conjunction}}%
+\begin{indexed}{\indexlibrary{\idxcode{conjunction}}}
 \begin{itemdecl}
 template<class... B> struct conjunction : @\seebelow@ { };
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -18380,10 +18429,11 @@ The member names of the base class, other than \tcode{conjunction} and
 in \tcode{conjunction}.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{disjunction}}%
+\begin{indexed}{\indexlibrary{\idxcode{disjunction}}}
 \begin{itemdecl}
 template<class... B> struct disjunction : @\seebelow@ { };
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -18428,10 +18478,11 @@ other than \tcode{disjunction} and \tcode{operator=},
 shall not be hidden and shall be unambiguously available in \tcode{disjunction}.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{negation}}%
+\begin{indexed}{\indexlibrary{\idxcode{negation}}}
 \begin{itemdecl}
 template<class B> struct negation : @\seebelow@ { };
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -18452,17 +18503,15 @@ binary data in which the least significant byte is placed first, with the rest
 in ascending order. This subclause describes the endianness of the scalar types
 of the execution environment.
 
-\indexlibrary{\idxcode{endian}}%
-\indexlibrarymember{little}{endian}%
-\indexlibrarymember{big}{endian}%
-\indexlibrarymember{native}{endian}%
+\begin{indexed}{\indexlibrary{\idxcode{endian}}}
 \begin{itemdecl}
 enum class endian {
-  little = @\seebelow@,
-  big    = @\seebelow@,
-  native = @\seebelow@
+  @\libmember{little}{endian}@ = @\seebelow@,
+  @\libmember{big}{endian}@    = @\seebelow@,
+  @\libmember{native}{endian}@ = @\seebelow@
 };
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -18580,7 +18629,7 @@ namespace std {
 
 \rSec2[ratio.ratio]{Class template \tcode{ratio}}
 
-\indexlibrary{\idxcode{ratio}}%
+\begin{indexed}{\indexlibrary{\idxcode{ratio}}}
 \begin{codeblock}
 namespace std {
   template<intmax_t N, intmax_t D = 1> class ratio {
@@ -18591,6 +18640,7 @@ namespace std {
   };
 }
 \end{codeblock}
+\end{indexed}
 
 \pnum
 \indextext{signed integer representation!two's complement}%
@@ -18777,9 +18827,9 @@ namespace std {
 
 \pnum
 The class \tcode{type_index} provides a simple wrapper for
-\tcode{type_info} which can be used as an index type in associative
-containers\iref{associative} and in unordered associative
-containers\iref{unord}.
+\tcode{type_info} which can be used as an index type in
+\link{associative containers}{associative} and in
+\link{unordered associative containers}{unord}.
 
 \rSec2[type.index.members]{\tcode{type_index} members}
 
@@ -18813,9 +18863,8 @@ bool operator!=(const type_index& rhs) const noexcept;
 \returns \tcode{*target != *rhs.target}.
 \end{itemdescr}
 
-\indexlibrarymember{operator<}{type_index}%
 \begin{itemdecl}
-bool operator<(const type_index& rhs) const noexcept;
+bool @\libmember{operator<}{type_index}@(const type_index& rhs) const noexcept;
 \end{itemdecl}
 
 \begin{itemdescr}
@@ -18977,9 +19026,8 @@ The behavior of a program that adds specializations for
 
 \rSec2[execpol.seq]{Sequenced execution policy}
 
-\indexlibrary{\idxcode{execution::sequenced_policy}}%
 \begin{itemdecl}
-class execution::sequenced_policy { @\unspec@ };
+class @\libentity{execution::sequenced_policy}@ { @\unspec@ };
 \end{itemdecl}
 
 \begin{itemdescr}
@@ -18997,9 +19045,8 @@ if the invocation of an element access function exits via an uncaught exception,
 
 \rSec2[execpol.par]{Parallel execution policy}
 
-\indexlibrary{\idxcode{execution::parallel_policy}}%
 \begin{itemdecl}
-class execution::parallel_policy { @\unspec@ };
+class @\libentity{execution::parallel_policy}@ { @\unspec@ };
 \end{itemdecl}
 
 \begin{itemdescr}
@@ -19017,9 +19064,8 @@ if the invocation of an element access function exits via an uncaught exception,
 
 \rSec2[execpol.parunseq]{Parallel and unsequenced execution policy}
 
-\indexlibrary{\idxcode{execution::parallel_unsequenced_policy}}%
 \begin{itemdecl}
-class execution::parallel_unsequenced_policy { @\unspec@ };
+class @\libentity{execution::parallel_unsequenced_policy}@ { @\unspec@ };
 \end{itemdecl}
 
 \begin{itemdescr}
@@ -19061,29 +19107,19 @@ The header \tcode{<execution>} declares global objects associated with each type
 
 \indexhdr{charconv}%
 \begin{codeblock}
-@%
-\indexlibrary{\idxcode{chars_format}}%
-\indexlibrarymember{scientific}{chars_format}%
-\indexlibrarymember{fixed}{chars_format}%
-\indexlibrarymember{hex}{chars_format}%
-\indexlibrarymember{general}{chars_format}%
-@namespace std {
+namespace std {
   // floating-point format for primitive numerical conversion
-  enum class chars_format {
-    scientific = @\unspec@,
-    fixed = @\unspec@,
-    hex = @\unspec@,
-    general = fixed | scientific
+  enum class @\libentity{chars_format}@ {
+    @\libmember{scientific}{chars_format}@ = @\unspec@,
+    @\libmember{fixed}{chars_format}@ = @\unspec@,
+    @\libmember{hex}{chars_format}@ = @\unspec@,
+    @\libmember{general}{chars_format}@ = fixed | scientific
   };
-@%
-\indexlibrary{\idxcode{to_chars_result}}%
-\indexlibrarymember{ptr}{to_chars_result}%
-\indexlibrarymember{ec}{to_chars_result}
-@
+
   // \ref{charconv.to.chars}, primitive numerical output conversion
-  struct to_chars_result {
-    char* ptr;
-    errc ec;
+  struct @\libentity{to_chars_result}@ {
+    char* @\libmember{ptr}{to_chars_result}@;
+    errc @\libmember{ec}{to_chars_result}@;
   };
 
   to_chars_result to_chars(char* first, char* last, @\seebelow@ value, int base = 10);
@@ -19102,15 +19138,11 @@ The header \tcode{<execution>} declares global objects associated with each type
                            chars_format fmt, int precision);
   to_chars_result to_chars(char* first, char* last, long double value,
                            chars_format fmt, int precision);
-@%
-\indexlibrary{\idxcode{from_chars_result}}%
-\indexlibrarymember{ptr}{from_chars_result}%
-\indexlibrarymember{ec}{from_chars_result}
-@
+
   // \ref{charconv.from.chars}, primitive numerical input conversion
-  struct from_chars_result {
-    const char* ptr;
-    errc ec;
+  struct @\libentity{from_chars_result}@ {
+    const char* @\libmember{ptr}{from_chars_result}@;
+    errc @\libmember{ec}{from_chars_result}@;
   };
 
   from_chars_result from_chars(const char* first, const char* last,
@@ -19167,7 +19199,7 @@ If there are several such representations,
 the representation with the smallest difference from
 the floating-point argument value is chosen,
 resolving any remaining ties using rounding according to
-\tcode{round_to_nearest}\iref{round.style}.
+\liblinkx{\tcode{round_to_nearest}}{round_to_nearest}{round.style}.
 
 \pnum
 The functions taking a \tcode{chars_format} parameter
@@ -19180,10 +19212,11 @@ if \tcode{fmt} is \tcode{chars_format::hex},
 and
 \tcode{g} if \tcode{fmt} is \tcode{chars_format::general}.
 
-\indexlibrary{\idxcode{to_chars}}%
+\begin{indexed}{\indexlibrary{\idxcode{to_chars}}}
 \begin{itemdecl}
 to_chars_result to_chars(char* first, char* last, @\seebelow@ value, int base = 10);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -19209,12 +19242,13 @@ and \tcode{char}
 as the type of the parameter \tcode{value}.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{to_chars}}%
+\begin{indexed}{\indexlibrary{\idxcode{to_chars}}}
 \begin{itemdecl}
 to_chars_result to_chars(char* first, char* last, float value);
 to_chars_result to_chars(char* first, char* last, double value);
 to_chars_result to_chars(char* first, char* last, long double value);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -19230,12 +19264,13 @@ a tie is resolved in favor of \tcode{f}.
 \throws Nothing.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{to_chars}}%
+\begin{indexed}{\indexlibrary{\idxcode{to_chars}}}
 \begin{itemdecl}
 to_chars_result to_chars(char* first, char* last, float value, chars_format fmt);
 to_chars_result to_chars(char* first, char* last, double value, chars_format fmt);
 to_chars_result to_chars(char* first, char* last, long double value, chars_format fmt);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -19251,7 +19286,7 @@ in the \tcode{"C"} locale.
 \throws Nothing.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{to_chars}}%
+\begin{indexed}{\indexlibrary{\idxcode{to_chars}}}
 \begin{itemdecl}
 to_chars_result to_chars(char* first, char* last, float value,
                          chars_format fmt, int precision);
@@ -19260,6 +19295,7 @@ to_chars_result to_chars(char* first, char* last, double value,
 to_chars_result to_chars(char* first, char* last, long double value,
                          chars_format fmt, int precision);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -19310,14 +19346,15 @@ the member \tcode{ec} of the return value
 is equal to \tcode{errc::result_out_of_range}.
 Otherwise,
 \tcode{value} is set to the parsed value,
-after rounding according to \tcode{round_to_nearest}\iref{round.style}, and
+after rounding according to \liblinkx{\tcode{round_to_nearest}}{round_to_nearest}{round.style}, and
 the member \tcode{ec} is value-initialized.
 
-\indexlibrary{\idxcode{from_chars}}%
+\begin{indexed}{\indexlibrary{\idxcode{from_chars}}}
 \begin{itemdecl}
 from_chars_result from_chars(const char* first, const char* last,
                              @\seebelow@&@\itcorr[-1]@ value, int base = 10);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
@@ -19345,7 +19382,7 @@ and \tcode{char}
 as the referenced type of the parameter \tcode{value}.
 \end{itemdescr}
 
-\indexlibrary{\idxcode{from_chars}}%
+\begin{indexed}{\indexlibrary{\idxcode{from_chars}}}
 \begin{itemdecl}
 from_chars_result from_chars(const char* first, const char* last, float& value,
                              chars_format fmt = chars_format::general);
@@ -19354,6 +19391,7 @@ from_chars_result from_chars(const char* first, const char* last, double& value,
 from_chars_result from_chars(const char* first, const char* last, long double& value,
                              chars_format fmt = chars_format::general);
 \end{itemdecl}
+\end{indexed}
 
 \begin{itemdescr}
 \pnum
