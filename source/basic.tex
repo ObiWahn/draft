@@ -105,7 +105,7 @@ A declaration may also have effects including:
 \item a static assertion\iref{dcl.dcl},
 \item controlling template instantiation\iref{temp.explicit},
 \item guiding template argument deduction for constructors\iref{temp.deduct.guide},
-\item use of attributes\iref{dcl.dcl}, and
+\item use of attributes\iref{dcl.attr}, and
 \item nothing (in the case of an \grammarterm{empty-declaration}).
 \end{itemize}
 
@@ -4488,7 +4488,7 @@ Integral and floating-point types are collectively
 called \defnx{arithmetic}{type!arithmetic} types.
 \indextext{\idxcode{numeric_limits}!specializations for arithmetic types}%
 Specializations of the standard library template
-\tcode{std::numeric_limits}\iref{support.limits} shall specify the
+\tcode{std::numeric_limits}\iref{numeric.limits} shall specify the
 maximum and minimum values of each arithmetic type for an
 implementation.
 
