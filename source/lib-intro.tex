@@ -639,7 +639,7 @@ or as a
 \indextext{type!enumerated}%
 
 \pnum
-The bitmask type \term{bitmask} can be written:
+The bitmask type \placeholder{bitmask} can be written:
 
 \begin{codeblock}
 // For exposition only.
@@ -654,28 +654,28 @@ inline constexpr @$\tcode{\placeholder{bitmask C}}_{2}$@(@$\tcode{\placeholder{V
 inline constexpr @$\tcode{\placeholder{bitmask C}}_{3}$@(@$\tcode{\placeholder{V}}_{3}{}$@);
   .....
 
-constexpr @\term{bitmask}{}@ operator&(@\term{bitmask}{}@ X, @\term{bitmask}{}@ Y) {
-  return static_cast<@\term{bitmask}{}@>(
+constexpr @\placeholder{bitmask}{}@ operator&(@\placeholder{bitmask}{}@ X, @\placeholder{bitmask}{}@ Y) {
+  return static_cast<@\placeholder{bitmask}{}@>(
     static_cast<int_type>(X) & static_cast<int_type>(Y));
 }
-constexpr @\term{bitmask}{}@ operator|(@\term{bitmask}{}@ X, @\term{bitmask}{}@ Y) {
-  return static_cast<@\term{bitmask}{}@>(
+constexpr @\placeholder{bitmask}{}@ operator|(@\placeholder{bitmask}{}@ X, @\placeholder{bitmask}{}@ Y) {
+  return static_cast<@\placeholder{bitmask}{}@>(
     static_cast<int_type>(X) | static_cast<int_type>(Y));
 }
-constexpr @\term{bitmask}{}@ operator^(@\term{bitmask}{}@ X, @\term{bitmask}{}@ Y){
-  return static_cast<@\term{bitmask}{}@>(
+constexpr @\placeholder{bitmask}{}@ operator^(@\placeholder{bitmask}{}@ X, @\placeholder{bitmask}{}@ Y){
+  return static_cast<@\placeholder{bitmask}{}@>(
     static_cast<int_type>(X) ^ static_cast<int_type>(Y));
 }
-constexpr @\term{bitmask}{}@ operator~(@\term{bitmask}{}@ X){
-  return static_cast<@\term{bitmask}{}@>(~static_cast<int_type>(X));
+constexpr @\placeholder{bitmask}{}@ operator~(@\placeholder{bitmask}{}@ X){
+  return static_cast<@\placeholder{bitmask}{}@>(~static_cast<int_type>(X));
 }
-@\term{bitmask}{}@& operator&=(@\term{bitmask}{}@& X, @\term{bitmask}{}@ Y){
+@\placeholder{bitmask}{}@& operator&=(@\placeholder{bitmask}{}@& X, @\placeholder{bitmask}{}@ Y){
   X = X & Y; return X;
 }
-@\term{bitmask}{}@& operator|=(@\term{bitmask}{}@& X, @\term{bitmask}{}@ Y) {
+@\placeholder{bitmask}{}@& operator|=(@\placeholder{bitmask}{}@& X, @\placeholder{bitmask}{}@ Y) {
   X = X | Y; return X;
 }
-@\term{bitmask}{}@& operator^=(@\term{bitmask}{}@& X, @\term{bitmask}{}@ Y) {
+@\placeholder{bitmask}{}@& operator^=(@\placeholder{bitmask}{}@& X, @\placeholder{bitmask}{}@ Y) {
   X = X ^ Y; return X;
 }
 \end{codeblock}
