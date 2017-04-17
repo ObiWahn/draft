@@ -527,14 +527,11 @@ available for use is obtained by merging the default arguments
 from all prior declarations of the template in the
 same way default function arguments are\iref{dcl.fct.default}.
 \begin{example}
-
 \begin{codeblock}
 template<class T1, class T2 = int> class A;
 template<class T1 = int, class T2> class A;
 \end{codeblock}
-
 is equivalent to
-
 \begin{codeblock}
 template<class T1 = int, class T2 = int> class A;
 \end{codeblock}
@@ -565,7 +562,6 @@ shall be deducible
 from the parameter-type-list
 of the deduction guide template.
 \begin{example}
-
 \begin{codeblock}
 template<class T1 = int, class T2> class B;     // error
 
@@ -581,7 +577,6 @@ A
 shall
 not be given default arguments by two different declarations in the same scope.
 \begin{example}
-
 \begin{codeblock}
 template<class T = int> class X;
 template<class T = int> class X { @\commentellip@ };  // error
@@ -601,7 +596,6 @@ is taken as the end of the
 \grammarterm{template-parameter-list}
 rather than a greater-than operator.
 \begin{example}
-
 \begin{codeblock}
 template<int i = 3 > 4 >        // syntax error
 class X { @\commentellip@ };
@@ -762,7 +756,6 @@ token produced by this replacement rule may terminate an enclosing
 \grammarterm{template-id} construct or it may be part of a different
 construct (e.g., a cast).\end{note}
 \begin{example}
-
 \begin{codeblock}
 template<int i> class X { @\commentellip@ };
 
@@ -1354,7 +1347,6 @@ If a specialization is not visible at the point of instantiation,
 and it would have been selected had it been visible, the program is ill-formed,
 no diagnostic required.
 \begin{example}
-
 \begin{codeblock}
 template<class T> class A {     // primary template
   int x;
@@ -1950,19 +1942,16 @@ with \tcode{operator<=>}, and}
 to the same template.}
 \end{itemize}
 \begin{example}
-
 \begin{codeblock}
 template<class E, int size> class buffer { @\commentellip@ };
 buffer<char,2*512> x;
 buffer<char,1024> y;
 \end{codeblock}
-
 declares
 \tcode{x}
 and
 \tcode{y}
 to be of the same type, and
-
 \begin{codeblock}
 template<class T, void(*err_fct)()> class list { @\commentellip@ };
 list<int,&error_handler1> x1;
@@ -1970,7 +1959,6 @@ list<int,&error_handler2> x2;
 list<int,&error_handler2> x3;
 list<char,&error_handler2> x4;
 \end{codeblock}
-
 declares
 \tcode{x2}
 and
@@ -1988,7 +1976,6 @@ template<class T> using Z = Y<T>;
 X<Y<int> > y;
 X<Z<int> > z;
 \end{codeblock}
-
 declares \tcode{y} and \tcode{z} to be of the same type.
 \end{example}
 
@@ -8252,7 +8239,6 @@ can be deduced if
 and
 \tcode{A}
 have one of the following forms:
-
 \begin{codeblock}
 T
 @\cv{}@ T
@@ -8280,7 +8266,6 @@ TT<T>
 TT<i>
 TT<>
 \end{codeblock}
-
 where
 \tcode{(T)}
 represents
@@ -8404,23 +8389,17 @@ These forms can be used in the same way as
 \tcode{T}
 is for further composition of types.
 \begin{example}
-
 \begin{codeblock}
 X<int> (*)(char[6])
 \end{codeblock}
-
 is of the form
-
 \begin{codeblock}
 @\grammarterm{template-name}@<T> (*)(@\placeholder{type}@[i])
 \end{codeblock}
-
 which is a variant of
-
 \begin{codeblock}
 @\placeholder{type}@ (*)(T)
 \end{codeblock}
-
 where type is
 \tcode{X<int>}
 and
@@ -8557,7 +8536,6 @@ may be deduced from an array bound, the resulting value will always be
 \tcode{true}
 because the array bound will be nonzero.}
 \begin{example}
-
 \begin{codeblock}
 template<int i> class A { @\commentellip@ };
 template<short s> void f(A<s>);
@@ -8583,7 +8561,6 @@ can be deduced from a function, pointer to function, or
 pointer-to-member-function type.
 
 \begin{example}
-
 \begin{codeblock}
 template<class T> void f(void(*)(T,int));
 template<class T> void foo(T,int);
@@ -8605,7 +8582,6 @@ A template
 \grammarterm{type-parameter}
 cannot be deduced from the type of a function default argument.
 \begin{example}
-
 \begin{codeblock}
 template <class T> void f(T = 5, T = 7);
 void g() {
@@ -8625,7 +8601,6 @@ is deduced from the type of the
 \grammarterm{template-argument}
 of a class template specialization used in the argument list of a function call.
 \begin{example}
-
 \begin{codeblock}
 template <template <class T> class X> struct A { };
 template <template <class T> class X> void f(A<X>) { }
@@ -8736,11 +8711,9 @@ void f(int a, int b, char c, char d) {
 \end{codeblock}
 
 Adding the non-template function
-
 \begin{codeblock}
 int max(int,int);
 \end{codeblock}
-
 to the example above would resolve the third call, by providing a function that
 could be called for
 \tcode{max(a,c)}
@@ -8757,7 +8730,6 @@ for
 Here is an example involving conversions on a function argument involved in
 \grammarterm{template-argument}
 deduction:
-
 \begin{codeblock}
 template<class T> struct B { @\commentellip@ };
 template<class T> struct D : public B<T> { @\commentellip@ };
@@ -8775,7 +8747,6 @@ void g(B<int>& bi, D<int>& di) {
 Here is an example involving conversions on a function argument not involved in
 \grammarterm{template-parameter}
 deduction:
-
 \begin{codeblock}
 template<class T> void f(T*,int);       // \#1
 template<class T> void f(T,char);       // \#2
@@ -8796,7 +8767,6 @@ specialization in a set of candidate functions.
 Therefore only the function template declaration is needed to resolve a call
 for which a template specialization is a candidate.
 \begin{example}
-
 \begin{codeblock}
 template<class T> void f(T);    // declaration
 

@@ -280,7 +280,6 @@ struct POD {        // both trivial and standard-layout
 \pnum
 A class definition introduces a new type.
 \begin{example}
-
 \begin{codeblock}
 struct X { int a; };
 struct Y { int a; };
@@ -288,30 +287,23 @@ X a1;
 Y a2;
 int a3;
 \end{codeblock}
-
 declares three variables of three different types. This implies that
-
 \begin{codeblock}
 a1 = a2;                        // error: \tcode{Y} assigned to \tcode{X}
 a1 = a3;                        // error: \tcode{int} assigned to \tcode{X}
 \end{codeblock}
-
 are type mismatches, and that
-
 \begin{codeblock}
 int f(X);
 int f(Y);
 \end{codeblock}
-
 \indextext{overloading}%
 declare an \link{overloaded}{over} function \tcode{f()} and not
 simply a single function \tcode{f()} twice. For the same reason,
-
 \begin{codeblock}
 struct S { int a; };
 struct S { int a; };            // error, double definition
 \end{codeblock}
-
 is ill-formed because it defines \tcode{S} twice.
 \end{example}
 
@@ -409,11 +401,9 @@ void g(int s) {
 The declaration of a class name takes effect immediately after the
 \grammarterm{identifier} is seen in the class definition or
 \grammarterm{elaborated-type-specifier}. For example,
-
 \begin{codeblock}
 class A * A;
 \end{codeblock}
-
 first specifies \tcode{A} to be the name of a class and then redefines
 it as the name of a pointer to an object of that class. This means that
 the elaborated form \tcode{class} \tcode{A} must be used to refer to the
@@ -686,7 +676,6 @@ There are no special member function types or data member types.
 \pnum
 \begin{example}
 A simple example of a class definition is
-
 \begin{codeblock}
 struct tnode {
   char tword[20];
@@ -695,15 +684,12 @@ struct tnode {
   tnode* right;
 };
 \end{codeblock}
-
 which contains an array of twenty characters, an integer, and two
 pointers to objects of the same type. Once this definition has been
 given, the declaration
-
 \begin{codeblock}
 tnode s, *sp;
 \end{codeblock}
-
 declares \tcode{s} to be a \tcode{tnode} and \tcode{sp} to be a pointer
 to a \tcode{tnode}. With these declarations, \tcode{sp->count} refers to
 the \tcode{count} member of the object to which \tcode{sp} points;
@@ -879,7 +865,6 @@ arguments}{dcl.fct.default} or in the member function body) is looked up
 as described in~\ref{basic.lookup}.
 \end{note}
 \begin{example}
-
 \begin{codeblock}
 struct X {
   typedef int T;
@@ -983,7 +968,6 @@ an enumerator or a nested type of class \tcode{X} or of a base class of
 These transformations do not apply in the
 template definition context\iref{temp.dep.type}.
 \begin{example}
-
 \begin{codeblock}
 struct tnode {
   char tword[20];
@@ -1032,7 +1016,6 @@ declared \tcode{volatile} is a \term{volatile} member function and a
 member function declared \tcode{const} \tcode{volatile} is a
 \defn{const volatile member function}.
 \begin{example}
-
 \begin{codeblock}
 struct X {
   void g() const;
@@ -1101,7 +1084,6 @@ A cv-qualified member function can be called on an
 \link{object-expression}{expr.ref} only if the object-expression is as
 cv-qualified or less-cv-qualified than the member function.
 \begin{example}
-
 \begin{codeblock}
 void k(s& x, const s& y) {
   x.f();
@@ -1205,11 +1187,9 @@ classes are called its \term{potentially constructed subobjects}.
 Constructors do not have names.
 In a declaration of a constructor, the \grammarterm{declarator} is a
 function declarator\iref{dcl.fct} of the form
-
 \begin{ncbnf}
 ptr-declarator \terminal{(} parameter-declaration-clause \terminal{)} \opt{noexcept-specifier} \opt{attribute-specifier-seq}
 \end{ncbnf}
-
 where the \grammarterm{ptr-declarator} consists solely of an
 \grammarterm{id-expression}, an optional \grammarterm{attribute-specifier-seq},
 and optional surrounding parentheses, and the \grammarterm{id-expression} has
@@ -1233,7 +1213,6 @@ In a constructor declaration, each \grammarterm{decl-specifier} in the optional
 \grammarterm{decl-specifier-seq} shall be \tcode{friend}, \tcode{inline},
 \tcode{constexpr}, or an \grammarterm{explicit-specifier}.
 \begin{example}
-
 \begin{codeblock}
 struct S {
   S();              // declares the constructor
@@ -1824,13 +1803,10 @@ or a user-declared destructor \iref{depr.impldec}.
 The implicitly-declared copy assignment operator for a class
 \tcode{X}
 will have the form
-
 \begin{codeblock}
 X& X::operator=(const X&)
 \end{codeblock}
-
 if
-
 \begin{itemize}
 \item
 each direct base class \tcode{B} of \tcode{X}
@@ -1848,7 +1824,6 @@ implicitly-declared copy assignment operator cannot bind to a
 
 Otherwise, the implicitly-declared copy assignment operator
 will have the form
-
 \begin{codeblock}
 X& X::operator=(X&)
 \end{codeblock}
@@ -2088,11 +2063,9 @@ union \tcode{X} copies the object representation\iref{basic.types} of \tcode{X}.
 \pnum
 In a declaration of a destructor, the \grammarterm{declarator} is a
 function declarator\iref{dcl.fct} of the form
-
 \begin{ncbnf}
 ptr-declarator \terminal{(} parameter-declaration-clause \terminal{)} \opt{noexcept-specifier} \opt{attribute-specifier-seq}
 \end{ncbnf}
-
 where the \grammarterm{ptr-declarator} consists solely of an
 \grammarterm{id-expression}, an optional \grammarterm{attribute-specifier-seq},
 and optional surrounding parentheses, and the \grammarterm{id-expression} has
@@ -2541,7 +2514,6 @@ it may be called for implicit type conversions.
 
 \pnum
 A member function of a class \tcode{X} having no parameters with a name of the form
-
 \begin{bnf}
 \nontermdef{conversion-function-id}\br
     \terminal{operator} conversion-type-id
@@ -2556,7 +2528,6 @@ A member function of a class \tcode{X} having no parameters with a name of the f
 \nontermdef{conversion-declarator}\br
     ptr-operator \opt{conversion-declarator}
 \end{bnf}
-
 specifies a conversion from
 \tcode{X}
 to the type specified by the
@@ -2862,11 +2833,9 @@ A static data member shall not be
 
 \pnum
 A \grammarterm{member-declarator} of the form
-
 \begin{ncsimplebnf}
 \opt{identifier} \opt{attribute-specifier-seq} \terminal{:} constant-expression \opt{brace-or-equal-initializer}
 \end{ncsimplebnf}
-
 \indextext{\idxcode{:}!bit-field declaration}%
 \indextext{declaration!bit-field}%
 specifies a bit-field.
@@ -3223,11 +3192,9 @@ new (&u.n) N;
 
 \pnum
 A union of the form
-
 \begin{ncsimplebnf}
 \terminal{union} \terminal{\{} member-specification \terminal{\}} \terminal{;}
 \end{ncsimplebnf}
-
 is called an \defn{anonymous union}; it defines an unnamed type and
 an unnamed object of that type called an \defn{anonymous union object}.
 Each \grammarterm{member-declaration} in the \grammarterm{member-specification}

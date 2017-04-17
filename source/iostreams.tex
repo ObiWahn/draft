@@ -9110,7 +9110,6 @@ Behaves according to the description of
 \tcode{basic_streambuf<charT, traits>::overflow(c)},
 except that the behavior of ``consuming characters'' is performed by first
 converting as if by:
-
 \begin{codeblock}
 charT* b = pbase();
 charT* p = pptr();
@@ -9120,7 +9119,6 @@ char*  xbuf_end;
 codecvt_base::result r =
   a_codecvt.out(state, b, p, end, xbuf, xbuf+XSIZE, xbuf_end);
 \end{codeblock}
-
 and then
 \begin{itemize}
 \item If \tcode{r == codecvt_base::error} then fail.

@@ -219,14 +219,11 @@ selection-statement is a single statement and not a
 \grammarterm{compound-statement}, it is as if it was rewritten to be a
 compound-statement containing the original substatement.
 \begin{example}
-
 \begin{codeblock}
 if (x)
   int i;
 \end{codeblock}
-
 can be equivalently rewritten as
-
 \begin{codeblock}
 if (x) {
   int i;
@@ -339,12 +336,10 @@ to the promoted type.
 Any
 statement within the \tcode{switch} statement can be labeled with one or
 more case labels as follows:
-
 \begin{ncbnf}
 \indextext{label!\idxcode{case}}%
 \terminal{case} constant-expression \terminal{:}
 \end{ncbnf}
-
 where the \grammarterm{constant-expression} shall be
 a converted \link{constant expression}{expr.const} of the
 adjusted type of the switch condition. No two of the case constants in
@@ -353,11 +348,9 @@ the same switch shall have the same value after conversion.
 \pnum
 \indextext{label!\idxcode{default}}%
 There shall be at most one label of the form
-
 \begin{codeblock}
 default :
 \end{codeblock}
-
 within a \tcode{switch} statement.
 
 \pnum
@@ -452,14 +445,11 @@ If the substatement in an iteration-statement is a single statement and
 not a \grammarterm{compound-statement}, it is as if it was rewritten to be
 a compound-statement containing the original statement.
 \begin{example}
-
 \begin{codeblock}
 while (--x >= 0)
   int i;
 \end{codeblock}
-
 can be equivalently rewritten as
-
 \begin{codeblock}
 while (--x >= 0) {
   int i;

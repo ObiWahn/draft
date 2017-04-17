@@ -18359,9 +18359,7 @@ struct S {
 using PMF = void (S::*)(long) const;
 using PMD = char  S::*;
 \end{codeblock}
-
 the following assertions will hold:
-
 \begin{codeblock}
 static_assert(is_same_v<invoke_result_t<S, int>, short>);
 static_assert(is_same_v<invoke_result_t<S&, unsigned char, int&>, double>);

@@ -452,7 +452,6 @@ Exactly one definition of a class is required in a translation unit if
 the class is used in a way that requires the class type to be complete.
 \begin{example} The following complete translation unit is well-formed,
 even though it never defines \tcode{X}:
-
 \begin{codeblock}
 struct X;                       // declare \tcode{X} as a struct type
 struct X* x1;                   // use \tcode{X} in pointer formation
@@ -568,7 +567,6 @@ implicitly defined in every translation unit where it is odr-used, and the
 implicit definition in every translation unit shall call the same
 constructor for a subobject of \tcode{D}.
 \begin{example}
-
 \begin{codeblock}
 // translation unit 1:
 struct X {
@@ -641,7 +639,6 @@ declarative region.
 \pnum
 \begin{example}
 In
-
 \begin{codeblock}
 int j = 24;
 int main() {
@@ -649,7 +646,6 @@ int main() {
   j = 42;
 }
 \end{codeblock}
-
 the identifier \tcode{j} is declared twice as a name (and used twice).
 The declarative region of the first \tcode{j} includes the entire
 example. The potential scope of the first \tcode{j} begins immediately
@@ -715,12 +711,10 @@ that are or enclose \placeholder{R} and do not enclose \placeholder{P}.
 The \defn{point of declaration} for a name is immediately after its
 complete \link{declarator}{dcl.decl} and before its
 \grammarterm{initializer} (if any), except as noted below. \begin{example}
-
 \begin{codeblock}
 unsigned char x = 12;
 { unsigned char x = x; }
 \end{codeblock}
-
 Here the second \tcode{x} is initialized with its own (indeterminate)
 value. \end{example}
 
@@ -729,12 +723,10 @@ value. \end{example}
 \indextext{name hiding}%
 A name from an outer scope remains visible up
 to the point of declaration of the name that hides it. \begin{example}
-
 \begin{codeblock}
 const int  i = 2;
 { int  i[i]; }
 \end{codeblock}
-
 declares a block-scope array of two integers. \end{example} \end{note}
 
 \pnum
@@ -757,12 +749,10 @@ constructor is immediately after the \grammarterm{using-declarator}\iref{namespa
 \indextext{declaration!enumerator point of}%
 The point of declaration for an enumerator is immediately after its
 \grammarterm{enumerator-definition}. \begin{example}
-
 \begin{codeblock}
 const int x = 12;
 { enum { x = x }; }
 \end{codeblock}
-
 Here, the enumerator \tcode{x} is initialized with the value of the
 constant \tcode{x}, namely 12. \end{example}
 
@@ -771,7 +761,6 @@ After the point of declaration of a class member, the member name can be
 looked up in the scope of its class. \begin{note}
 \indextext{type!incomplete}%
 This is true even if the class is an incomplete class. For example,
-
 \begin{codeblock}
 struct X {
   enum E { z = 16 };
@@ -785,20 +774,16 @@ The point of declaration of a class first declared in an
 \grammarterm{elaborated-type-specifier} is as follows:
 \begin{itemize}
 \item for a declaration of the form
-
 \begin{ncbnf}
 class-key \opt{attribute-specifier-seq} identifier \terminal{;}
 \end{ncbnf}
-
 the \grammarterm{identifier} is declared to be a
 \grammarterm{class-name} in the scope that contains the declaration,
 otherwise
 \item for an \grammarterm{elaborated-type-specifier} of the form
-
 \begin{ncbnf}
 class-key identifier
 \end{ncbnf}
-
 if the
 \grammarterm{elaborated-type-specifier} is used in the
 \grammarterm{decl-specifier-seq} or \grammarterm{parameter-declaration-clause}
@@ -837,7 +822,6 @@ is immediately after the \grammarterm{for-range-initializer}.
 \pnum
 The point of declaration for a template parameter is immediately after its complete
 \grammarterm{template-parameter}. \begin{example}
-
 \begin{codeblock}
 typedef unsigned char T;
 template<class T
@@ -940,7 +924,6 @@ declaration}{basic.scope.pdecl} onwards; and for each
 member's namespace, the member's potential scope includes that portion
 of the potential scope of the \grammarterm{using-directive} that follows
 the member's point of declaration. \begin{example}
-
 \begin{codeblock}
 namespace N {
   int i;
@@ -1079,7 +1062,6 @@ parameter names belong to this declarative region; any other kind of name introd
 the \grammarterm{declaration} of a \grammarterm{template-declaration} is instead
 introduced into the same declarative region where it would be introduced as a result of
 a non-template declaration of the same name. \begin{example}
-
 \begin{codeblock}
 namespace N {
   template<class T> struct A { };               // \#1
@@ -1089,7 +1071,6 @@ namespace N {
   };
 }
 \end{codeblock}
-
 The declarative regions of \tcode{T}, \tcode{U} and \tcode{V} are the
 \grammarterm{template-declaration}{s} on lines \#1, \#2, and \#3,
 respectively. But the names \tcode{A}, \tcode{f}, \tcode{g} and \tcode{C} all belong to
@@ -1105,20 +1086,16 @@ declaration}{basic.scope.pdecl} and ends at the end of its declarative region.
 declaration of subsequent \grammarterm{template-parameter}{s} and their default
 arguments but cannot be used in preceding \grammarterm{template-parameter}{s} or their
 default arguments. For example,
-
 \begin{codeblock}
 template<class T, T* p, class U = T> class X { @\commentellip@ };
 template<class T> void f(T* p = new T);
 \end{codeblock}
-
 This also implies that a \grammarterm{template-parameter} can be used in the
 specification of base classes. For example,
-
 \begin{codeblock}
 template<class T> class X : public Array<T> { @\commentellip@ };
 template<class T> class Y : public T { @\commentellip@ };
 \end{codeblock}
-
 The use of a template parameter as a base class implies that a class used as a template
 argument must be defined and not just declared when the class template is instantiated.
 \end{note}
@@ -1128,12 +1105,10 @@ The declarative region of the name of a template parameter is nested within the
 immediately-enclosing declarative region. \begin{note} As a result, a
 \grammarterm{template-parameter} \link{hides}{basic.scope.hiding} any entity with the same name in an enclosing
 scope. \begin{example}
-
 \begin{codeblock}
 typedef int N;
 template<N X, typename N, template<N Y> class T> struct A;
 \end{codeblock}
-
 Here, \tcode{X} is a non-type template parameter of type \tcode{int} and \tcode{Y} is a
 non-type template parameter of the same type as the second template parameter of
 \tcode{A}. \end{example}\end{note}
@@ -1270,7 +1245,6 @@ int z = h<N::A>(N::A());        // error: \tcode{h<} does not begin a \grammarte
 
 The rules in~\ref{basic.lookup.argdep} have no effect on
 the syntactic interpretation of an expression. For example,
-
 \begin{codeblock}
 typedef int f;
 namespace N {
@@ -1283,7 +1257,6 @@ namespace N {
   };
 }
 \end{codeblock}
-
 Because the expression is not a function call, the \link{argument-dependent
 name lookup}{basic.lookup.argdep} does not apply and the friend
 function \tcode{f} is not found. \end{note}
@@ -1311,7 +1284,6 @@ its enclosing blocks\iref{stmt.block} or shall be declared before its
 use in namespace \tcode{N} or, if \tcode{N} is a nested namespace, shall
 be declared before its use in one of \tcode{N}'s enclosing namespaces.
 \begin{example}
-
 \begin{codeblock}
 namespace A {
   namespace N {
@@ -2017,7 +1989,6 @@ void g()
 \begin{example}
 Because each referenced namespace is searched at most once, the
 following is well-defined:
-
 \begin{codeblock}
 namespace B {
   int b;
@@ -2051,7 +2022,6 @@ functions, the non-type name hides the class or enumeration name if and
 only if the declarations are from the same namespace; otherwise (the
 declarations are from different namespaces), the program is ill-formed.
 \begin{example}
-
 \begin{codeblock}
 namespace A {
   struct x { };
@@ -2076,17 +2046,14 @@ namespace C {
 In a declaration for a namespace member in which the
 \grammarterm{declarator-id} is a \grammarterm{qualified-id}, given that the
 \grammarterm{qualified-id} for the namespace member has the form
-
 \begin{ncbnf}
 nested-name-specifier unqualified-id
 \end{ncbnf}
-
 the
 \grammarterm{unqualified-id} shall name a member of the namespace
 designated by the \grammarterm{nested-name-specifier}
 or of an element of the \deflink{inline namespace set}{namespace.def} of that namespace.
 \begin{example}
-
 \begin{codeblock}
 namespace A {
   namespace B {
@@ -2096,12 +2063,10 @@ namespace A {
 }
 void A::f1(int){ }  // ill-formed, \tcode{f1} is not a member of \tcode{A}
 \end{codeblock}
-
 \end{example} However, in such namespace member declarations, the
 \grammarterm{nested-name-specifier} may rely on \grammarterm{using-directive}{s}
 to implicitly provide the initial part of the
 \grammarterm{nested-name-specifier}. \begin{example}
-
 \begin{codeblock}
 namespace A {
   namespace B {
@@ -2138,11 +2103,9 @@ If the \grammarterm{elaborated-type-specifier} has no
 \grammarterm{nested-name-specifier}, and unless the
 \grammarterm{elaborated-type-specifier} appears in a declaration with the
 following form:
-
 \begin{ncbnf}
 class-key \opt{attribute-specifier-seq} identifier \terminal{;}
 \end{ncbnf}
-
 the \grammarterm{identifier} is looked up according
 to~\ref{basic.lookup.unqual} but ignoring any non-type names that have
 been declared. If the \grammarterm{elaborated-type-specifier} is introduced
@@ -2153,11 +2116,9 @@ by the \grammarterm{class-key} and this lookup does not find a previously
 declared \grammarterm{type-name}, or if the
 \grammarterm{elaborated-type-specifier} appears in a declaration with the
 form:
-
 \begin{ncbnf}
 class-key \opt{attribute-specifier-seq} identifier \terminal{;}
 \end{ncbnf}
-
 the \grammarterm{elaborated-type-specifier} is a declaration that
 introduces the \grammarterm{class-name} as described
 in~\ref{basic.scope.pdecl}.
@@ -2169,7 +2130,6 @@ described in~\ref{basic.lookup.qual}, but ignoring any non-type names
 that have been declared. If the name lookup does not find a previously
 declared \grammarterm{type-name}, the \grammarterm{elaborated-type-specifier}
 is ill-formed. \begin{example}
-
 \begin{codeblock}
 struct Node {
   struct Node* Next;            // OK: Refers to \tcode{Node} at global scope
@@ -2229,7 +2189,6 @@ If the \grammarterm{unqualified-id} is \tcode{\~}\grammarterm{type-name}, the
 expression is of a class type \tcode{C}, the \grammarterm{type-name} is
 also looked up in the scope of class \tcode{C}. At least one of the
 lookups shall find a name that refers to \cv{}~\tcode{T}. \begin{example}
-
 \begin{codeblock}
 struct A { };
 
@@ -2420,7 +2379,6 @@ void g() {
   }
 }
 \end{codeblock}
-
 Without the declaration at line \#2,
 the declaration at line \#3 would link with the declaration at line \#1.
 Because the declaration with internal linkage is hidden, however,
@@ -2432,7 +2390,6 @@ When a block scope declaration of an entity with linkage is not found to
 refer to some other declaration, then that entity is a member of the
 innermost enclosing namespace. However such a declaration does not
 introduce the member name in its namespace scope. \begin{example}
-
 \begin{codeblock}
 namespace X {
   void p() {

@@ -4016,13 +4016,10 @@ if \tcode{T1} and \tcode{T2} are different,
 there is a \deflink{cv-decomposition}{conv.qual} of \tcode{T1}
 yielding \placeholder{n} such that
 \tcode{T2} has a cv-decomposition of the form
-
 \begin{indented}
 $\cv{}_0^2$ $P_0^2$ $\cv{}_1^2$ $P_1^2$ $\cdots$ $\cv{}_{n-1}^2$ $P_{n-1}^2$ $\cv{}_n^2$ $\mathtt{U}_2$,
 \end{indented}
-
 and there is no qualification conversion that converts \tcode{T1} to
-
 \begin{indented}
 $\cv{}_0^2$ $P_0^1$ $\cv{}_1^2$ $P_1^1$ $\cdots$ $\cv{}_{n-1}^2$ $P_{n-1}^1$ $\cv{}_n^2$ $\mathtt{U}_1$.
 \end{indented}
@@ -4451,7 +4448,6 @@ This prevents ambiguities between the declarator operators \tcode{\&}, \tcode{\&
 \tcode{*}, and \tcode{[]} and their expression counterparts.
 \end{note}
 \begin{example}
-
 \begin{codeblock}
 new int * i;                    // syntax error: parsed as \tcode{(new int*) i}, not as \tcode{(new int)*i}
 \end{codeblock}
@@ -4465,13 +4461,10 @@ operator.
 Parentheses in a \grammarterm{new-type-id} of a \grammarterm{new-expression}
 can have surprising effects.
 \begin{example}
-
 \begin{codeblock}
 new int(*[10])();               // error
 \end{codeblock}
-
 is ill-formed because the binding is
-
 \begin{codeblock}
 (new int) (*[10])();            // error
 \end{codeblock}
@@ -4482,7 +4475,6 @@ types}{basic.compound}:
 \begin{codeblock}
 new (int (*[10])());
 \end{codeblock}
-
 allocates an array of \tcode{10} pointers to functions (taking no
 argument and returning \tcode{int}).
 \end{example}
@@ -5223,7 +5215,6 @@ the user\iref{class.conv} is ill-formed.
 
 \pnum
 The conversions performed by
-
 \begin{itemize}
 \indextext{cast!const}%
 \indextext{cast!static}%
@@ -5234,7 +5225,6 @@ The conversions performed by
 \item a \link{\tcode{reinterpret_cast}}{expr.reinterpret.cast}, or
 \item a \tcode{reinterpret_cast} followed by a \tcode{const_cast},
 \end{itemize}
-
 can be performed using the cast notation of explicit type conversion.
 The same semantic restrictions and behaviors apply, with the exception
 that in performing a \tcode{static_cast} in the following situations the
@@ -5347,7 +5337,6 @@ cv-qualifiers of the result, are the same as the rules for
 It is not possible to use a pointer to member that refers to a
 \tcode{mutable} member to modify a const class object. For
 example,
-
 \begin{codeblock}
 struct S {
   S() : i(0) { }
@@ -5368,11 +5357,9 @@ If the result of \tcode{.*} or \tcode{->*} is a function, then that
 result can be used only as the operand for the function call operator
 \tcode{()}.
 \begin{example}
-
 \begin{codeblock}
 (ptr_to_obj->*ptr_to_mfct)(10);
 \end{codeblock}
-
 calls the member function denoted by \tcode{ptr_to_mfct} for the object
 pointed to by \tcode{ptr_to_obj}.
 \end{example}
@@ -6195,7 +6182,6 @@ subject to the constraint that the reference must bind directly.
 
 \item If \tcode{E2} is a prvalue or if neither of the conversion sequences above can be
 formed and at least one of the operands has (possibly cv-qualified) class type:
-
 \begin{itemize}
 \item if \tcode{T1} and \tcode{T2} are the same class type
 (ignoring cv-qualification) and
@@ -6492,11 +6478,9 @@ lists of arguments to functions\iref{expr.call} and lists of
 initializers\iref{dcl.init} \end{example} the comma operator as
 described in this subclause can appear only in parentheses.
 \begin{example}
-
 \begin{codeblock}
 f(a, (t=3, t+2), c);
 \end{codeblock}
-
 has three arguments, the second of which has the value
 \tcode{5}.
 \end{example}
@@ -6593,7 +6577,6 @@ zero}{expr.mul}, or certain \link{shift operations}{expr.shift}
 \item
 an \link{lvalue-to-rvalue conversion}{conv.lval} unless
 it is applied to
-
 \begin{itemize}
   \item
   a non-volatile glvalue that refers to an object that is
@@ -6793,7 +6776,6 @@ of type \tcode{T} is an
 expression, implicitly converted to type \tcode{T}, where
 the converted expression is a constant expression and the
 implicit conversion sequence contains only
-
 \begin{itemize}
 \item user-defined conversions,
 \item \link{lvalue-to-rvalue conversions}{conv.lval},
@@ -6807,7 +6789,6 @@ implicit conversion sequence contains only
 \item \deflinkx{null member pointer conversions}{null member pointer conversion}{conv.mem} from \tcode{std::nullptr_t}, and
 \item \link{function pointer conversions}{conv.fctptr},
 \end{itemize}
-
 and where the reference binding (if any) binds directly.
 \begin{note}
 Such expressions may be used in \link{\tcode{new}
@@ -6830,13 +6811,11 @@ a glvalue core constant expression that refers to
 an entity that is a permitted result of a constant expression (as defined below), or
 a prvalue core constant expression whose value
 satisfies the following constraints:
-
 \begin{itemize}
   \item
   if the value is an object of class type,
   each non-static data member of reference type refers to
   an entity that is a permitted result of a constant expression,
-
   \item
   if the value is of pointer type, it contains
   the address of an object with static storage duration,
@@ -6877,7 +6856,6 @@ evaluation of the same expression (or the same operations on the same values) du
 execution.\footnote{Nonetheless, implementations should provide consistent results,
 irrespective of whether the evaluation was performed during translation and/or during program
 execution.} \begin{example}
-
 \begin{codeblock}
 bool f() {
     char array[1 + int(1 + 0.2 - 0.1 - 0.1)];  // Must be evaluated during translation
