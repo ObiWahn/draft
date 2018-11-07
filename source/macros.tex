@@ -197,7 +197,7 @@
 \newcommand{\defnx}[2]{\indexdefn{#2}\textit{#1}}
 % Compound defined term with 'see' for primary term.
 % Usage: \defnadj{trivial}{class}
-\newcommand{\defnadj}[2]{\indextext{#1 #2|see{#2, #1}}\indexdefn{#2!#1}\textit{#1 #2}}
+\newcommand{\defnadj}[2]{\indextext{#1 #2|see{#2, #1}}\defnx{#1 #2}{#2!#1}}
 
 %%--------------------------------------------------
 %% allow line break if needed for justification
