@@ -4611,16 +4611,16 @@ appears, the absolute numeric monetary value is required.
 
 \pnum
 The format of the numeric monetary value is a decimal number:
-\begin{codeblock}
+\begin{outputblock}
 value ::= units [ decimal-point [ digits ]] |
   decimal-point digits
-\end{codeblock}
+\end{outputblock}
 if
 \tcode{frac_digits()}
 returns a positive value, or
-\begin{codeblock}
+\begin{outputblock}
 value ::= units
-\end{codeblock}
+\end{outputblock}
 otherwise.
 The symbol
 \tcode{decimal-point}
@@ -4628,10 +4628,10 @@ indicates the character returned by
 \tcode{decimal_point()}.
 The other symbols are defined as follows:
 
-\begin{codeblock}
+\begin{outputblock}
 units ::= digits [ thousands-sep units ]
 digits ::= adigit [ digits ]
-\end{codeblock}
+\end{outputblock}
 
 In the syntax specification, the symbol
 \tcode{adigit}

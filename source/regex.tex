@@ -4000,7 +4000,7 @@ Instead they shall call the appropriate traits member function to achieve the re
 \pnum
 The following productions within the ECMAScript grammar are modified as follows:
 
-\begin{codeblock}
+\begin{outputblock}
 ClassAtom ::
   -
   ClassAtomNoDash
@@ -4010,12 +4010,12 @@ ClassAtom ::
 
 IdentityEscape ::
   SourceCharacter but not c
-\end{codeblock}
+\end{outputblock}
 
 \pnum
 The following new productions are then added:
 
-\begin{codeblock}
+\begin{outputblock}
 ClassAtomExClass ::
   [: ClassName :]
 
@@ -4031,7 +4031,7 @@ ClassName ::
 
 ClassNameCharacter ::
   SourceCharacter but not one of "." "=" ":"
-\end{codeblock}
+\end{outputblock}
 
 \pnum
 The productions \tcode{ClassAtomExClass}, \tcode{ClassAtomCollatingElement}
@@ -4055,7 +4055,7 @@ names shall be recognized:
 \tcode{upper}, \tcode{xdigit}, \tcode{d}, \tcode{s}, \tcode{w}.
 In addition the following expressions shall be equivalent:
 
-\begin{codeblock}
+\begin{outputblock}
 \d and [[:digit:]]
 
 \D and [^[:digit:]]
@@ -4067,7 +4067,7 @@ In addition the following expressions shall be equivalent:
 \w and [_[:alnum:]]
 
 \W and [^_[:alnum:]]
-\end{codeblock}
+\end{outputblock}
 
 \pnum
 \indexlibrary{regular expression traits!\idxcode{lookup_collatename}}%
