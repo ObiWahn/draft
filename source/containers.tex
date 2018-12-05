@@ -793,7 +793,7 @@ type\iref{temp.deduct} and
 \tcode{i} and \tcode{j}
 denote iterators satisfying input iterator requirements
 and refer to elements implicitly convertible to \tcode{value_type},
-\tcode{[i, j)}
+\range{i}{j}
 denotes a valid range,
 \tcode{il} designates an object of type \tcode{initializer_list<value_type>},
 \tcode{n}
@@ -801,7 +801,7 @@ denotes a value of type \tcode{X::size_type},
 \tcode{p} denotes a valid constant iterator to
 \tcode{a}, \tcode{q}
 denotes a valid dereferenceable constant iterator to
-\tcode{a}, \tcode{[q1, q2)}
+\tcode{a}, \range{q1}{q2}
 denotes a valid range of constant iterators in
 \tcode{a}, \tcode{t}
 denotes an lvalue or a const rvalue of
@@ -844,7 +844,7 @@ The complexities of the expressions are sequence dependent.
  Each iterator in the range \range{i}{j} shall be dereferenced exactly once.\br
  \ensures \tcode{distance(begin(), end()) ==}
  \tcode{distance(i, j)}\br
- Constructs a sequence container equal to the range \tcode{[i, j)}    \\ \rowsep
+ Constructs a sequence container equal to the range \range{i}{j}    \\ \rowsep
 
 \tcode{X(il)}      &
                     &
@@ -900,7 +900,7 @@ The complexities of the expressions are sequence dependent.
  and swappable\iref{swappable.requirements}.
  Each iterator in the range \range{i}{j} shall be dereferenced exactly once.\br
  \requires \tcode{i} and \tcode{j} are not iterators into \tcode{a}.\br
- Inserts copies of elements in \tcode{[i, j)} before \tcode{p}  \\ \rowsep
+ Inserts copies of elements in \range{i}{j} before \tcode{p}  \\ \rowsep
 
 \tcode{a.insert(p, il)}  &
   \tcode{iterator}            &
@@ -916,7 +916,7 @@ The complexities of the expressions are sequence dependent.
  \tcode{iterator}   &
  \requires\ For \tcode{vector} and \tcode{deque},
  \tcode{T} shall be \oldconcept{MoveAssignable}.\br
- \effects\ Erases the elements in the range \tcode{[q1, q2)}.  \\ \rowsep
+ \effects\ Erases the elements in the range \range{q1}{q2}.  \\ \rowsep
 
 \tcode{a.clear()}   &
  \tcode{void}       &
@@ -934,7 +934,7 @@ The complexities of the expressions are sequence dependent.
  \oldconcept{MoveInsertable} into \tcode{X}.\br
  Each iterator in the range \range{i}{j} shall be dereferenced exactly once.\br
  \requires \tcode{i}, \tcode{j} are not iterators into \tcode{a}.\br
- Replaces elements in \tcode{a} with a copy of \tcode{[i, j)}.\br
+ Replaces elements in \tcode{a} with a copy of \range{i}{j}.\br
  Invalidates all references, pointers and iterators
  referring to the elements of \tcode{a}.
  For \tcode{vector} and \tcode{deque},
@@ -1607,7 +1607,7 @@ denotes a valid range,
 \tcode{p} denotes a valid constant iterator to \tcode{a},
 \tcode{q} denotes a valid dereferenceable constant iterator to \tcode{a},
 \tcode{r} denotes a valid dereferenceable iterator to \tcode{a},
-\tcode{[q1, q2)} denotes a valid range of constant iterators in \tcode{a},
+\range{q1}{q2} denotes a valid range of constant iterators in \tcode{a},
 \tcode{il} designates an object of type \tcode{initializer_list<value_type>},
 \tcode{t} denotes a value of type \tcode{X::value_type},
 \tcode{k} denotes a value of type \tcode{X::key_type}
@@ -1714,9 +1714,9 @@ and \tcode{nh} denotes a non-const rvalue of type \tcode{X::node_type}.
                         &
   \requires\ \tcode{value_type} is \oldconcept{EmplaceConstructible} into \tcode{X} from \tcode{*i}.\br
   \effects\ Constructs an empty container and inserts elements from the
-  range \tcode{[i, j)} into it; uses \tcode{c} as a comparison object. &
+  range \range{i}{j} into it; uses \tcode{c} as a comparison object. &
   $N \log N$ in general, where $N$ has the value \tcode{distance(i, j)};
-  linear if \tcode{[i, j)} is sorted with \tcode{value_comp()} \\ \rowsep
+  linear if \range{i}{j} is sorted with \tcode{value_comp()} \\ \rowsep
 
 \tcode{X(i,j)}\br\tcode{X~u(i,j);}    &
                                     &
@@ -2272,12 +2272,12 @@ In \tref{HashRequirements}:
   is valid and denotes a type\iref{temp.deduct},
 \item \tcode{i} and \tcode{j} denote input iterators
   that refer to \tcode{value_type},
-\item \tcode{[i, j)} denotes a valid range,
+\item \range{i}{j} denotes a valid range,
 \item \tcode{p} and \tcode{q2} denote valid constant iterators to \tcode{a},
 \item \tcode{q} and \tcode{q1} denote
   valid dereferenceable constant iterators to \tcode{a},
 \item \tcode{r} denotes a valid dereferenceable iterator to \tcode{a},
-\item \tcode{[q1, q2)} denotes a valid range in \tcode{a},
+\item \range{q1}{q2} denotes a valid range in \tcode{a},
 \item \tcode{il} denotes a value of type \tcode{initializer_list<value_type>},
 \item \tcode{t} denotes a value of type \tcode{X::value_type},
 \item \tcode{k} denotes a value of type \tcode{key_type},
@@ -2433,7 +2433,7 @@ as the key equality predicate.
 &   \requires\ \tcode{value_type} is \oldconcept{EmplaceConstructible} into \tcode{X} from \tcode{*i}.\br
     \effects\ Constructs an empty container with at least \tcode{n} buckets,
 using \tcode{hf} as the hash function and \tcode{eq} as the key
-equality predicate, and inserts elements from \tcode{[i, j)} into it.
+equality predicate, and inserts elements from \range{i}{j} into it.
 &   Average case \bigoh{N} ($N$ is \tcode{distance(i, j)}), worst case
 \bigoh{N^2}
 \\ \rowsep
@@ -2444,7 +2444,7 @@ equality predicate, and inserts elements from \tcode{[i, j)} into it.
     \tcode{value_type} is \oldconcept{EmplaceConstructible} into \tcode{X} from \tcode{*i}.\br
     \effects\ Constructs an empty container with at least \tcode{n} buckets,
 using \tcode{hf} as the hash function and \tcode{key_equal()} as the key
-equality predicate, and inserts elements from \tcode{[i, j)} into it.
+equality predicate, and inserts elements from \range{i}{j} into it.
 &   Average case \bigoh{N} ($N$ is \tcode{distance(i, j)}), worst case
 \bigoh{N^2}
 \\ \rowsep
@@ -2455,7 +2455,7 @@ equality predicate, and inserts elements from \tcode{[i, j)} into it.
     \tcode{value_type} is \oldconcept{EmplaceConstructible} into \tcode{X} from \tcode{*i}.\br
     \effects\ Constructs an empty container with at least \tcode{n} buckets,
 using \tcode{hasher()} as the hash function and \tcode{key_equal()}
-as the key equality predicate, and inserts elements from \tcode{[i, j)}
+as the key equality predicate, and inserts elements from \range{i}{j}
 into it.
 &   Average case \bigoh{N} ($N$ is \tcode{distance(i, j)}), worst case
 \bigoh{N^2}
@@ -2468,7 +2468,7 @@ into it.
     \effects\ Constructs an empty container with an unspecified number of
 buckets, using \tcode{hasher()} as the hash function and
 \tcode{key_equal()} as the key equality predicate, and inserts elements
-from \tcode{[i, j)} into it.
+from \range{i}{j} into it.
 &   Average case \bigoh{N} ($N$ is \tcode{distance(i, j)}), worst case
 \bigoh{N^2}
 \\ \rowsep
@@ -2613,7 +2613,7 @@ start.  Implementations are permitted to ignore the hint.%
 &   \tcode{void}
 &   \requires\ \tcode{value_type} shall be \oldconcept{EmplaceConstructible} into \tcode{X} from \tcode{*i}.\br
     \requires \tcode{i} and \tcode{j} are not iterators in \tcode{a}.\br
-    \effects Equivalent to \tcode{a.insert(t)} for each element in \tcode{[i,j)}.%
+    \effects Equivalent to \tcode{a.insert(t)} for each element in \range{i}{j}.%
 &   Average case \bigoh{N}, where $N$ is \tcode{distance(i, j)}.
     Worst case \bigoh{N(\tcode{a.size()}\brk{}+\brk{}1)}.
 \\ \rowsep
@@ -2723,7 +2723,7 @@ the number of elements erased.
 %
 \tcode{a.erase(q1, q2)}
 &   \tcode{iterator}
-&   Erases all elements in the range \tcode{[q1, q2)}. Returns
+&   Erases all elements in the range \range{q1}{q2}. Returns
     the iterator immediately following the erased elements prior to the
     erasure.%
 &   Average case linear in \tcode{distance(q1, q2)},
@@ -2826,14 +2826,14 @@ the number of elements erased.
   \requires \tcode{b.bucket_count() > 0}.\br
     Returns the index of the bucket in which elements with keys equivalent
     to \tcode{k} would be found, if any such element existed.
-    \ensures the return value shall be in the range \tcode{[0, b.bucket_count())}.%
+    \ensures the return value shall be in the range \range{0}{b.bucket_count()}.%
 & Constant
 \\ \rowsep
 %
 \indexunordmem{bucket_size}%
 \tcode{b.bucket_size(n)}
 &   \tcode{size_type}
-&   \requires \tcode{n} shall be in the range \tcode{[0, b.bucket_count())}.
+&   \requires \tcode{n} shall be in the range \range{0}{b.bucket_count()}.
     Returns the number of elements in the $\tcode{n}^\text{th}$ bucket.%
 &   \bigoh{\tcode{b.bucket_}\-\tcode{size(n)}}
 \\ \rowsep
@@ -2842,7 +2842,7 @@ the number of elements erased.
 \tcode{b.begin(n)}
 &   \tcode{local_iterator}; \br
     \tcode{const_local_iterator} for const \tcode{b}.
-&   \requires \tcode{n} shall be in the range \tcode{[0, b.bucket_count())}.
+&   \requires \tcode{n} shall be in the range \range{0}{b.bucket_count()}.
     \tcode{b.begin(n)} returns an iterator referring to the
     first element in the bucket. If the bucket is empty, then
     \tcode{b.begin(n) == b.end(n)}.%
@@ -2853,7 +2853,7 @@ the number of elements erased.
 \tcode{b.end(n)}
 &   \tcode{local_iterator}; \br
     \tcode{const_local_iterator} for const \tcode{b}.
-&   \requires \tcode{n} shall be in the range \tcode{[0, b.bucket_count())}.
+&   \requires \tcode{n} shall be in the range \range{0}{b.bucket_count()}.
     \tcode{b.end(n)} returns an iterator which is the past-the-end
     value for the bucket.%
 &   Constant
@@ -2862,7 +2862,7 @@ the number of elements erased.
 \indexunordmem{cbegin}%
 \tcode{b.cbegin(n)}
 &   \tcode{const_local_iterator}
-&   \requires \tcode{n} shall be in the range \tcode{[0, b.bucket_count())}.
+&   \requires \tcode{n} shall be in the range \range{0}{b.bucket_count()}.
     \tcode{b.cbegin(n)} returns an iterator referring to the
     first element in the bucket. If the bucket is empty, then
     \tcode{b.cbegin(n) == b.cend(n)}.%
@@ -2872,7 +2872,7 @@ the number of elements erased.
 \indexunordmem{cend}%
 \tcode{b.cend(n)}
 &   \tcode{const_local_iterator}
-&   \requires \tcode{n} shall be in the range \tcode{[0, b.bucket_count())}.%
+&   \requires \tcode{n} shall be in the range \range{0}{b.bucket_count()}.%
     \tcode{b.cend(n)} returns an iterator which is the past-the-end
     value for the bucket.%
 &   Constant
@@ -4547,8 +4547,8 @@ the comparator \tcode{operator<} (for the first two overloads) or
 \tcode{get_allocator() == x.get_allocator()} is \tcode{true}.
 
 \pnum
-\effects Merges the two sorted ranges \tcode{[begin(), end())} and
-\tcode{[x.begin(), x.end())}. \tcode{x} is empty after the merge. If an
+\effects Merges the two sorted ranges \range{begin()}{end()} and
+\range{x.begin()}{x.end()}. \tcode{x} is empty after the merge. If an
 exception is thrown other than by a comparison there are no effects.
 Pointers and references to the moved elements of \tcode{x} now refer to those same elements
 but as members of \tcode{*this}. Iterators referring to the moved elements will continue to
@@ -5108,7 +5108,7 @@ void splice(const_iterator position, list&& x, const_iterator first,
 \begin{itemdescr}
 \pnum
 \requires
-\tcode{[first, last)}
+\range{first}{last}
 is a valid range in
 \tcode{x}.
 The program has undefined behavior if
@@ -5206,7 +5206,7 @@ or
 \pnum
 \complexity
 If the range
-\tcode{[first, last)}
+\range{first}{last}
 is not empty, exactly
 \tcode{(last - first) - 1}
 applications of the corresponding predicate,
@@ -5231,8 +5231,8 @@ the comparator \tcode{operator<} (for the first two overloads) or
 
 \pnum
 \effects
-If \tcode{addressof(x) == this}, does nothing; otherwise, merges the two sorted ranges \tcode{[begin(),
-end())} and \tcode{[x.\brk{}begin(), x.end())}. The result is a range in which the elements
+If \tcode{addressof(x) == this}, does nothing; otherwise, merges the two sorted ranges \range{begin()}{end()}
+and \range{x.\brk{}begin()}{x.end()}. The result is a range in which the elements
 will be sorted in non-decreasing order according to the ordering defined by \tcode{comp}; that
 is, for every iterator \tcode{i}, in the range other than the first, the condition
 \tcode{comp(*i, *(i - 1))} will be \tcode{false}.
@@ -5242,7 +5242,7 @@ refer to their elements, but they now behave as iterators into \tcode{*this}, no
 \tcode{x}.
 
 \pnum
-\remarks Stable\iref{algorithm.stable}. If \tcode{addressof(x) != this}, the range \tcode{[x.begin(), x.end())}
+\remarks Stable\iref{algorithm.stable}. If \tcode{addressof(x) != this}, the range \range{x.begin()}{x.end()}
 is empty after the merge.
 No elements are copied by this operation. The behavior is undefined if
 \tcode{get_allocator() != x.get_allocator()}.
