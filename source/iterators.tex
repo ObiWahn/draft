@@ -1513,8 +1513,8 @@ Let \tcode{E} be an expression such that \tcode{decltype((E))} is \tcode{T}, and
 dereferenceable object of type \tcode{I}. \tcode{I} and \tcode{T} model \tcode{OutputIterator<I, T>} only if
 \tcode{*i++ = E;} has effects equivalent to:
 \begin{codeblock}
-  *i = E;
-  ++i;
+*i = E;
+++i;
 \end{codeblock}
 
 \pnum

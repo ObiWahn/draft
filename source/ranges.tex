@@ -249,8 +249,8 @@ expression-equivalent to:
   valid expression and its type \tcode{I} models \tcode{Iterator} with overload
   resolution performed in a context that includes the declarations:
   \begin{codeblock}
-  template<class T> void begin(T&&) = delete;
-  template<class T> void begin(initializer_list<T>&&) = delete;
+template<class T> void begin(T&&) = delete;
+template<class T> void begin(initializer_list<T>&&) = delete;
   \end{codeblock}
 
   and does not include a declaration of \tcode{ranges::begin}.
@@ -293,8 +293,8 @@ expression-equivalent to:
   \tcode{Sentinel<decltype(\brk{}ranges::\brk{}begin(E))>} with overload
   resolution performed in a context that includes the declarations:
   \begin{codeblock}
-  template<class T> void end(T&&) = delete;
-  template<class T> void end(initializer_list<T>&&) = delete;
+template<class T> void end(T&&) = delete;
+template<class T> void end(initializer_list<T>&&) = delete;
   \end{codeblock}
 
   and does not include a declaration of \tcode{ranges::end}.
@@ -369,7 +369,7 @@ expression-equivalent to:
   expression and its type \tcode{I} models \tcode{Iterator} with overload
   resolution performed in a context that includes the declaration:
   \begin{codeblock}
-  template<class T> void rbegin(T&&) = delete;
+template<class T> void rbegin(T&&) = delete;
   \end{codeblock}
 
   and does not include a declaration of \tcode{ranges::rbegin}.
@@ -413,7 +413,7 @@ expression-equivalent to:
   \tcode{Sentinel<decltype(\brk{}ranges::rbegin(E))>} with overload
   resolution performed in a context that includes the declaration:
   \begin{codeblock}
-  template<class T> void rend(T&&) = delete;
+template<class T> void rend(T&&) = delete;
   \end{codeblock}
 
   and does not include a declaration of \tcode{ranges::rend}.
@@ -507,7 +507,7 @@ object\iref{customization.point.object}. The expression
     with overload resolution performed in a context that includes
     the declaration:
     \begin{codeblock}
-    template<class T> void size(T&&) = delete;
+template<class T> void size(T&&) = delete;
     \end{codeblock}
 
     and does not include a declaration of \tcode{ranges::size}.
@@ -587,7 +587,7 @@ expression-equivalent to:
   Otherwise, if \tcode{ranges::begin(E)} is a valid expression whose type models
   \tcode{ContiguousIterator},
   \begin{codeblock}
-  ranges::begin(E) == ranges::end(E) ? nullptr : addressof(*ranges::begin(E))
+ranges::begin(E) == ranges::end(E) ? nullptr : addressof(*ranges::begin(E))
   \end{codeblock}
 
   except that \tcode{E} is evaluated only once.

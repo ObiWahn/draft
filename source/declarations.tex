@@ -4810,13 +4810,13 @@ initialization that would use that default member initializer,
 the program is ill-formed.
 \begin{example}
 \begin{codeblock}
-  struct A;
-  extern A a;
-  struct A {
-    const A& a1 { A{a,a} };     // OK
-    const A& a2 { A{} };        // error
-  };
-  A a{a,a};                     // OK
+struct A;
+extern A a;
+struct A {
+  const A& a1 { A{a,a} };       // OK
+  const A& a2 { A{} };          // error
+};
+A a{a,a};                       // OK
 \end{codeblock}
 \end{example}
 
@@ -6456,10 +6456,10 @@ The value of an enumerator or an object of an unscoped enumeration type is
 converted to an integer by integral promotion\iref{conv.prom}.
 \begin{example}
 \begin{codeblock}
-  enum color { red, yellow, green=20, blue };
-  color col = red;
-  color* cp = &col;
-  if (*cp == blue)              // ...
+enum color { red, yellow, green=20, blue };
+color col = red;
+color* cp = &col;
+if (*cp == blue)              // ...
 \end{codeblock}
 makes \tcode{color} a type describing various colors, and then declares
 \tcode{col} as an object of that type, and \tcode{cp} as a pointer to an
