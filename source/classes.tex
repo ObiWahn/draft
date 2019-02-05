@@ -57,8 +57,8 @@ make a \grammarterm{class-name}. An object of a class consists of a
 
 A class declaration where the \grammarterm{class-name}
 in the \grammarterm{class-head-name} is a \grammarterm{simple-template-id}
-shall be an explicit specialization\iref{temp.expl.spec} or
-a partial specialization\iref{temp.class.spec}.
+shall be an \link{explicit specialization}{temp.expl.spec} or
+a \link{partial specialization}{temp.class.spec}.
 A \grammarterm{class-specifier} whose
 \grammarterm{class-head} omits the
 \grammarterm{class-head-name} defines an unnamed class. \begin{note} An unnamed class thus can't
@@ -146,8 +146,11 @@ Aggregates of class type are described in~\ref{dcl.init.aggr}.
 A \defnadj{trivially copyable}{class} is a class:
 
 \begin{itemize}
-\item where each copy constructor, move constructor, copy assignment operator,
-and move assignment operator~(\ref{class.copy.ctor}, \ref{class.copy.assign})
+\item where each
+\link{copy constructor}{class.copy.ctor},
+\link{move constructor}{class.move.ctor},
+\link{copy assignment}{class.copy.assign} operator, and
+\link{move assignment}{class.move.assign} operator
 is either deleted or trivial,
 \item that has at least one non-deleted copy constructor, move constructor,
 copy assignment operator, or move assignment operator, and
@@ -156,7 +159,7 @@ copy assignment operator, or move assignment operator, and
 
 \pnum
 A \defnadj{trivial}{class} is a class that is trivially copyable and
-has one or more default constructors\iref{class.default.ctor},
+has one or more \link{default constructors}{class.default.ctor},
 all of which are either trivial or deleted and
 at least one of which is not deleted.
 \begin{note} In particular, a trivially copyable or trivial class does not have
@@ -652,7 +655,7 @@ function\iref{class.virtual}.
 \indextext{class object!member}%
 The type of a non-static data member shall not be an
 incomplete type\iref{basic.types},
-an abstract class type\iref{class.abstract},
+an \link{abstract class type}{class.abstract},
 or a (possibly multi-dimensional) array thereof.
 \begin{note}
 In particular, a class \tcode{C} cannot contain
@@ -999,7 +1002,7 @@ call \tcode{n1.set("abc",\&n2,0)}, \tcode{tword} refers to
 \tcode{n1.tword}, and in the call \tcode{n2.set("def",0,0)}, it refers
 to \tcode{n2.tword}. The functions \tcode{strlen}, \tcode{perror}, and
 \tcode{strcpy} are not members of the class \tcode{tnode} and should be
-declared elsewhere.\footnote{See, for example, \tcode{<cstring>}\iref{c.strings}.}
+declared elsewhere.\footnote{See, for example, \link{\tcode{<cstring>}}{c.strings}.}
 \end{example}
 
 \pnum
@@ -1032,7 +1035,7 @@ A non-static member function may be declared with a \grammarterm{ref-qualifier}\
 
 \pnum
 A non-static member function may be declared
-virtual\iref{class.virtual} or pure virtual\iref{class.abstract}.
+\link{virtual}{class.virtual} or \link{pure virtual}{class.abstract}.
 
 \rSec3[class.this]{The \tcode{this} pointer}%
 \indextext{\idxcode{this}}
@@ -1126,16 +1129,16 @@ see~\ref{class.ctor} and~\ref{class.dtor}.
 \indextext{constructor!move}%
 \indextext{assignment operator!copy}%
 \indextext{assignment operator!move}%
-The default constructor\iref{class.default.ctor},
-copy constructor, move constructor\iref{class.copy.ctor},
-copy assignment operator, move assignment operator\iref{class.copy.assign},
-and destructor\iref{class.dtor} are
+The \link{default constructor}{class.default.ctor},
+\link{copy constructor}{class.copy.ctor}, move constructor,
+\link{copy assignment}{class.copy.assign} operator, move assignment operator,
+and \link{destructor}{class.dtor} are
 \term{special member functions}.
 \begin{note} The implementation will implicitly declare these member functions for some class
 types when the program does not explicitly declare them.
 The implementation will implicitly define them
-if they are odr-used\iref{basic.def.odr} or
-needed for constant evaluation\iref{expr.const}.
+if they are \link{odr-used}{basic.def.odr} or
+needed for \link{constant evaluation}{expr.const}.
 \end{note}
 An implicitly-declared special member function is declared at the closing
 \tcode{\}} of the \grammarterm{class-specifier}.
@@ -1168,7 +1171,7 @@ Often such special member functions are called implicitly.
 
 \pnum
 \indextext{access control!member function and}%
-Special member functions obey the usual access rules\iref{class.access}.
+Special member functions obey the usual \link{access rules}{class.access}.
 \begin{example}
 Declaring a constructor protected
 ensures that only derived classes and friends can create objects using it.
@@ -1176,7 +1179,7 @@ ensures that only derived classes and friends can create objects using it.
 
 \pnum
 For a class, its non-static data members, its non-virtual direct base classes,
-and, if the class is not abstract\iref{class.abstract}, its virtual base
+and, if the class is not \link{abstract}{class.abstract}, its virtual base
 classes are called its \term{potentially constructed subobjects}.
 
 \rSec2[class.ctor]{Constructors}%
@@ -1186,7 +1189,7 @@ classes are called its \term{potentially constructed subobjects}.
 \pnum
 Constructors do not have names.
 In a declaration of a constructor, the \grammarterm{declarator} is a
-function declarator\iref{dcl.fct} of the form
+\link{function declarator}{dcl.fct} of the form
 \begin{ncbnf}
 ptr-declarator \terminal{(} parameter-declaration-clause \terminal{)} \opt{noexcept-specifier} \opt{attribute-specifier-seq}
 \end{ncbnf}
@@ -1199,8 +1202,8 @@ one of the following forms:
 \item
 in a \grammarterm{member-declaration} that belongs to the
 \grammarterm{member-specification} of a class or class template
-but is not a friend
-declaration\iref{class.friend}, the \grammarterm{id-expression} is the
+but is not a \link{friend}{class.friend}
+declaration, the \grammarterm{id-expression} is the
 injected-class-name\iref{class} of the immediately-enclosing entity or
 
 \item
@@ -1226,8 +1229,8 @@ S::S() { }          // defines the constructor
 \indextext{constructor!explicit call}%
 A constructor is used to initialize objects of its class type.
 Because constructors do not have names, they are never found during
-name lookup; however an explicit type conversion using the functional
-notation\iref{expr.type.conv} will cause a constructor to be called to
+name lookup; however an explicit \link{type conversion}{expr.type.conv} using the functional
+notation will cause a constructor to be called to
 initialize an object.
 \begin{note}
 The syntax looks like an explicit call of the constructor.
@@ -1272,10 +1275,10 @@ object.
 \indextext{restriction!constructor}%
 \tcode{const}
 and
-\tcode{volatile}
-semantics\iref{dcl.type.cv} are not applied on an object under construction.
+\link{\tcode{volatile}
+semantics}{dcl.type.cv} are not applied on an object under construction.
 They come into effect when the constructor for the
-most derived object\iref{intro.object} ends.
+most derived \link{object}{intro.object} ends.
 
 \pnum
 \indextext{restriction!constructor}%
@@ -1300,7 +1303,7 @@ has a default argument
 If there is no user-declared constructor for class
 \tcode{X},
 a non-explicit constructor having no parameters is implicitly declared
-as defaulted\iref{dcl.fct.def}.
+as \link{defaulted}{dcl.fct.def}.
 An implicitly-declared default constructor is an
 inline public member of its class.
 
@@ -1317,7 +1320,7 @@ with a non-trivial default constructor and
 no variant member of the anonymous union containing \tcode{M}
 has a default member initializer,
 
-\item any non-static data member with no default member initializer\iref{class.mem} is
+\item any non-static data member with no default \link{member}{class.mem} initializer is
 of reference type,
 
 \item any non-variant non-static data member of const-qualified type (or array
@@ -1332,7 +1335,7 @@ of const-qualified type (or array thereof),
 \item any potentially constructed subobject, except for a non-static data member
 with a \grammarterm{brace-or-equal-initializer}, has
 class type \tcode{M} (or array thereof) and either \tcode{M}
-has no default constructor or overload resolution\iref{over.match}
+has no default constructor or \link{overload resolution}{over.match}
 as applied to find \tcode{M}'s corresponding
 constructor results in an ambiguity or in a function that is deleted or
 inaccessible from the defaulted default constructor, or
@@ -1353,7 +1356,7 @@ its class has no virtual functions\iref{class.virtual} and no virtual base
 classes\iref{class.mi}, and
 
 \item no non-static data member of its class has
-a default member initializer\iref{class.mem}, and
+a default \link{member}{class.mem} initializer, and
 
 \item
 all the direct base classes of its class have trivial default constructors, and
@@ -1371,19 +1374,19 @@ A default constructor
 that is defaulted and not defined as deleted
 is
 \defnx{implicitly defined}{constructor!implicitly defined}
-when it is odr-used\iref{basic.def.odr}
+when it is \link{odr-used}{basic.def.odr}
 to create an object of its class type\iref{intro.object},
-when it is needed for constant evaluation\iref{expr.const}, or
+when it is needed for \link{constant evaluation}{expr.const}, or
 when it is explicitly defaulted after its first declaration.
 The implicitly-defined default constructor performs the set of
 initializations of the class that would be performed by a user-written default
 constructor for that class with no
-\grammarterm{ctor-initializer}\iref{class.base.init} and an empty
+\link{\grammarterm{ctor-initializer}}{class.base.init} and an empty
 \grammarterm{compound-statement}.
 If that user-written default constructor would be ill-formed,
 the program is ill-formed.
 If that user-written default constructor would satisfy the requirements
-of a constexpr constructor\iref{dcl.constexpr}, the implicitly-defined
+of a \link{constexpr constructor}{dcl.constexpr}, the implicitly-defined
 default constructor is \tcode{constexpr}.
 Before the defaulted default constructor for a class is
 implicitly defined,
@@ -1391,7 +1394,7 @@ all the non-user-provided default constructors for its base classes and
 its non-static data members shall have been implicitly defined.
 \begin{note}
 An implicitly-declared default constructor has an
-exception specification\iref{except.spec}.
+\link{exception specification}{except.spec}.
 An explicitly-defaulted definition might have an
 implicit exception specification, see~\ref{dcl.fct.def}.
 \end{note}
@@ -1400,16 +1403,16 @@ implicit exception specification, see~\ref{dcl.fct.def}.
 \indextext{constructor!implicitly called}%
 Default constructors are called implicitly to create class objects of static, thread,
 or automatic storage duration~(\ref{basic.stc.static}, \ref{basic.stc.thread}, \ref{basic.stc.auto}) defined
-without an initializer\iref{dcl.init},
-are called to create class objects of dynamic storage duration\iref{basic.stc.dynamic} created by a
+without an \link{initializer}{dcl.init},
+are called to create class objects of \link{dynamic storage duration}{basic.stc.dynamic} created by a
 \grammarterm{new-expression}
 in which the
-\grammarterm{new-initializer}
-is omitted\iref{expr.new}, or
-are called when the explicit type conversion syntax\iref{expr.type.conv} is
+\link{\grammarterm{new-initializer}}{expr.new}
+is omitted, or
+are called when the explicit \link{type conversion}{expr.type.conv}syntax is
 used.
 A program is ill-formed if the default constructor for an object
-is implicitly used and the constructor is not accessible\iref{class.access}.
+is implicitly used and the constructor is not \link{accessible}{class.access}.
 
 \pnum
 \begin{note}
@@ -1439,7 +1442,7 @@ constructor if its first parameter is of type
 or
 \tcode{const volatile X\&},
 and either there are no other parameters
-or else all other parameters have default arguments\iref{dcl.fct.default}.
+or else all other parameters have \link{default arguments}{dcl.fct.default}.
 \begin{example}
 \tcode{X::X(const X\&)}
 and
@@ -2062,7 +2065,7 @@ union \tcode{X} copies the object representation\iref{basic.types} of \tcode{X}.
 
 \pnum
 In a declaration of a destructor, the \grammarterm{declarator} is a
-function declarator\iref{dcl.fct} of the form
+\link{function declarator}{dcl.fct} of the form
 \begin{ncbnf}
 ptr-declarator \terminal{(} parameter-declaration-clause \terminal{)} \opt{noexcept-specifier} \opt{attribute-specifier-seq}
 \end{ncbnf}
